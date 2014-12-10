@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.apply.mapper.ApplyHandleLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.apply.model.ApplyHandleLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+    <result column="handle_time" property="handleTime" jdbcType="TIMESTAMP" />
+    <result column="handle_note" property="handleNote" jdbcType="VARCHAR" />
+    <result column="handle_by_id" property="handleById" jdbcType="BIGINT" />
+    <result column="handle_by" property="handleBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, apply_id, handle_time, handle_note, handle_by_id, handle_by
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.apply.model.ApplyHandleLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order_apply_handle_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_apply_handle_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_apply_handle_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.apply.model.ApplyHandleLogExample" >
+    delete from order_apply_handle_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.apply.model.ApplyHandleLog" >
+    insert into order_apply_handle_log (id, apply_id, handle_time, 
+      handle_note, handle_by_id, handle_by
+      )
+    values (uuid_short(), #{applyId,jdbcType=BIGINT}, #{handleTime,jdbcType=TIMESTAMP}, 
+      #{handleNote,jdbcType=VARCHAR}, #{handleById,jdbcType=BIGINT}, #{handleBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.apply.model.ApplyHandleLog" >
+    insert into order_apply_handle_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="handleTime != null" >
+        handle_time,
+      </if>
+      <if test="handleNote != null" >
+        handle_note,
+      </if>
+      <if test="handleById != null" >
+        handle_by_id,
+      </if>
+      <if test="handleBy != null" >
+        handle_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        uuid_short(),
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="handleTime != null" >
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleNote != null" >
+        #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleById != null" >
+        #{handleById,jdbcType=BIGINT},
+      </if>
+      <if test="handleBy != null" >
+        #{handleBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.apply.model.ApplyHandleLogExample" resultType="java.lang.Integer" >
+    select count(*) from order_apply_handle_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_apply_handle_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyId != null" >
+        apply_id = #{record.applyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.handleTime != null" >
+        handle_time = #{record.handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.handleNote != null" >
+        handle_note = #{record.handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleById != null" >
+        handle_by_id = #{record.handleById,jdbcType=BIGINT},
+      </if>
+      <if test="record.handleBy != null" >
+        handle_by = #{record.handleBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_apply_handle_log
+    set id = #{record.id,jdbcType=BIGINT},
+      apply_id = #{record.applyId,jdbcType=BIGINT},
+      handle_time = #{record.handleTime,jdbcType=TIMESTAMP},
+      handle_note = #{record.handleNote,jdbcType=VARCHAR},
+      handle_by_id = #{record.handleById,jdbcType=BIGINT},
+      handle_by = #{record.handleBy,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.apply.model.ApplyHandleLog" >
+    update order_apply_handle_log
+    <set >
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="handleTime != null" >
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleNote != null" >
+        handle_note = #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleById != null" >
+        handle_by_id = #{handleById,jdbcType=BIGINT},
+      </if>
+      <if test="handleBy != null" >
+        handle_by = #{handleBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.apply.model.ApplyHandleLog" >
+    update order_apply_handle_log
+    set apply_id = #{applyId,jdbcType=BIGINT},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      handle_note = #{handleNote,jdbcType=VARCHAR},
+      handle_by_id = #{handleById,jdbcType=BIGINT},
+      handle_by = #{handleBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

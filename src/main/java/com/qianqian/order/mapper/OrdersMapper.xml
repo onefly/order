@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.order.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.order.model.Orders" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parent_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_more_product" property="isMoreProduct" jdbcType="INTEGER" />
+    <result column="child_order_count" property="childOrderCount" jdbcType="INTEGER" />
+    <result column="order_fund" property="orderFund" jdbcType="DECIMAL" />
+    <result column="refund_fund" property="refundFund" jdbcType="DECIMAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="buyer_nickname" property="buyerNickname" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="invoice_title" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
+    <result column="invoice_content" property="invoiceContent" jdbcType="VARCHAR" />
+    <result column="addr_full_address" property="addrFullAddress" jdbcType="VARCHAR" />
+    <result column="addr_recieve_name" property="addrRecieveName" jdbcType="VARCHAR" />
+    <result column="addr_zip_code" property="addrZipCode" jdbcType="VARCHAR" />
+    <result column="addr_recieve_mobile" property="addrRecieveMobile" jdbcType="VARCHAR" />
+    <result column="addr_recieve_phone" property="addrRecievePhone" jdbcType="VARCHAR" />
+    <result column="buyer_submit_report_time" property="buyerSubmitReportTime" jdbcType="TIMESTAMP" />
+    <result column="pay_ingot_num" property="payIngotNum" jdbcType="INTEGER" />
+    <result column="pay_way" property="payWay" jdbcType="VARCHAR" />
+    <result column="express_numbers" property="expressNumbers" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_ID, type, is_more_product, child_order_count, order_fund, refund_fund, 
+    create_time, buyer_id, buyer_nickname, remark, end_time, invoice_title, invoice_type, 
+    invoice_content, addr_full_address, addr_recieve_name, addr_zip_code, addr_recieve_mobile, 
+    addr_recieve_phone, buyer_submit_report_time, pay_ingot_num, pay_way, express_numbers, 
+    express_company
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.order.model.OrdersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from orders
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.order.model.OrdersExample" >
+    delete from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.order.model.Orders" >
+  <selectKey resultType="java.lang.Long" order="BEFORE"  keyProperty="id">
+       	  SELECT fun_uuid(17) AS id
+     	 </selectKey>
+  
+    insert into orders (id, parent_ID, type, 
+      is_more_product, child_order_count, order_fund, 
+      refund_fund, create_time, buyer_id, 
+      buyer_nickname, remark, end_time, 
+      invoice_title, invoice_type, invoice_content, 
+      addr_full_address, addr_recieve_name, addr_zip_code, 
+      addr_recieve_mobile, addr_recieve_phone, buyer_submit_report_time, 
+      pay_ingot_num, pay_way, express_numbers, 
+      express_company)
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{isMoreProduct,jdbcType=INTEGER}, #{childOrderCount,jdbcType=INTEGER}, #{orderFund,jdbcType=DECIMAL}, 
+      #{refundFund,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{buyerId,jdbcType=BIGINT}, 
+      #{buyerNickname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{invoiceTitle,jdbcType=VARCHAR}, #{invoiceType,jdbcType=INTEGER}, #{invoiceContent,jdbcType=VARCHAR}, 
+      #{addrFullAddress,jdbcType=VARCHAR}, #{addrRecieveName,jdbcType=VARCHAR}, #{addrZipCode,jdbcType=VARCHAR}, 
+      #{addrRecieveMobile,jdbcType=VARCHAR}, #{addrRecievePhone,jdbcType=VARCHAR}, #{buyerSubmitReportTime,jdbcType=TIMESTAMP}, 
+      #{payIngotNum,jdbcType=INTEGER}, #{payWay,jdbcType=VARCHAR}, #{expressNumbers,jdbcType=VARCHAR}, 
+      #{expressCompany,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.order.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_ID,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isMoreProduct != null" >
+        is_more_product,
+      </if>
+      <if test="childOrderCount != null" >
+        child_order_count,
+      </if>
+      <if test="orderFund != null" >
+        order_fund,
+      </if>
+      <if test="refundFund != null" >
+        refund_fund,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content,
+      </if>
+      <if test="addrFullAddress != null" >
+        addr_full_address,
+      </if>
+      <if test="addrRecieveName != null" >
+        addr_recieve_name,
+      </if>
+      <if test="addrZipCode != null" >
+        addr_zip_code,
+      </if>
+      <if test="addrRecieveMobile != null" >
+        addr_recieve_mobile,
+      </if>
+      <if test="addrRecievePhone != null" >
+        addr_recieve_phone,
+      </if>
+      <if test="buyerSubmitReportTime != null" >
+        buyer_submit_report_time,
+      </if>
+      <if test="payIngotNum != null" >
+        pay_ingot_num,
+      </if>
+      <if test="payWay != null" >
+        pay_way,
+      </if>
+      <if test="expressNumbers != null" >
+        express_numbers,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isMoreProduct != null" >
+        #{isMoreProduct,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderCount != null" >
+        #{childOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderFund != null" >
+        #{orderFund,jdbcType=DECIMAL},
+      </if>
+      <if test="refundFund != null" >
+        #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceContent != null" >
+        #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="addrFullAddress != null" >
+        #{addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveName != null" >
+        #{addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrZipCode != null" >
+        #{addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveMobile != null" >
+        #{addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecievePhone != null" >
+        #{addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerSubmitReportTime != null" >
+        #{buyerSubmitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payIngotNum != null" >
+        #{payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumbers != null" >
+        #{expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.order.model.OrdersExample" resultType="java.lang.Integer" >
+    select count(*) from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update orders
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentId != null" >
+        parent_ID = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.isMoreProduct != null" >
+        is_more_product = #{record.isMoreProduct,jdbcType=INTEGER},
+      </if>
+      <if test="record.childOrderCount != null" >
+        child_order_count = #{record.childOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderFund != null" >
+        order_fund = #{record.orderFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.refundFund != null" >
+        refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerNickname != null" >
+        buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invoiceTitle != null" >
+        invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null" >
+        invoice_type = #{record.invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceContent != null" >
+        invoice_content = #{record.invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrFullAddress != null" >
+        addr_full_address = #{record.addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecieveName != null" >
+        addr_recieve_name = #{record.addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrZipCode != null" >
+        addr_zip_code = #{record.addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecieveMobile != null" >
+        addr_recieve_mobile = #{record.addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecievePhone != null" >
+        addr_recieve_phone = #{record.addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerSubmitReportTime != null" >
+        buyer_submit_report_time = #{record.buyerSubmitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payIngotNum != null" >
+        pay_ingot_num = #{record.payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.payWay != null" >
+        pay_way = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNumbers != null" >
+        express_numbers = #{record.expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCompany != null" >
+        express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update orders
+    set id = #{record.id,jdbcType=BIGINT},
+      parent_ID = #{record.parentId,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      is_more_product = #{record.isMoreProduct,jdbcType=INTEGER},
+      child_order_count = #{record.childOrderCount,jdbcType=INTEGER},
+      order_fund = #{record.orderFund,jdbcType=DECIMAL},
+      refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=INTEGER},
+      invoice_content = #{record.invoiceContent,jdbcType=VARCHAR},
+      addr_full_address = #{record.addrFullAddress,jdbcType=VARCHAR},
+      addr_recieve_name = #{record.addrRecieveName,jdbcType=VARCHAR},
+      addr_zip_code = #{record.addrZipCode,jdbcType=VARCHAR},
+      addr_recieve_mobile = #{record.addrRecieveMobile,jdbcType=VARCHAR},
+      addr_recieve_phone = #{record.addrRecievePhone,jdbcType=VARCHAR},
+      buyer_submit_report_time = #{record.buyerSubmitReportTime,jdbcType=TIMESTAMP},
+      pay_ingot_num = #{record.payIngotNum,jdbcType=INTEGER},
+      pay_way = #{record.payWay,jdbcType=VARCHAR},
+      express_numbers = #{record.expressNumbers,jdbcType=VARCHAR},
+      express_company = #{record.expressCompany,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.order.model.Orders" >
+    update orders
+    <set >
+      <if test="parentId != null" >
+        parent_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isMoreProduct != null" >
+        is_more_product = #{isMoreProduct,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderCount != null" >
+        child_order_count = #{childOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderFund != null" >
+        order_fund = #{orderFund,jdbcType=DECIMAL},
+      </if>
+      <if test="refundFund != null" >
+        refund_fund = #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceContent != null" >
+        invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="addrFullAddress != null" >
+        addr_full_address = #{addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveName != null" >
+        addr_recieve_name = #{addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrZipCode != null" >
+        addr_zip_code = #{addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveMobile != null" >
+        addr_recieve_mobile = #{addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecievePhone != null" >
+        addr_recieve_phone = #{addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerSubmitReportTime != null" >
+        buyer_submit_report_time = #{buyerSubmitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payIngotNum != null" >
+        pay_ingot_num = #{payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        pay_way = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumbers != null" >
+        express_numbers = #{expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.order.model.Orders" >
+    update orders
+    set parent_ID = #{parentId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      is_more_product = #{isMoreProduct,jdbcType=INTEGER},
+      child_order_count = #{childOrderCount,jdbcType=INTEGER},
+      order_fund = #{orderFund,jdbcType=DECIMAL},
+      refund_fund = #{refundFund,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=INTEGER},
+      invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      addr_full_address = #{addrFullAddress,jdbcType=VARCHAR},
+      addr_recieve_name = #{addrRecieveName,jdbcType=VARCHAR},
+      addr_zip_code = #{addrZipCode,jdbcType=VARCHAR},
+      addr_recieve_mobile = #{addrRecieveMobile,jdbcType=VARCHAR},
+      addr_recieve_phone = #{addrRecievePhone,jdbcType=VARCHAR},
+      buyer_submit_report_time = #{buyerSubmitReportTime,jdbcType=TIMESTAMP},
+      pay_ingot_num = #{payIngotNum,jdbcType=INTEGER},
+      pay_way = #{payWay,jdbcType=VARCHAR},
+      express_numbers = #{expressNumbers,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.order.mapper.OrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.order.model.OrderLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_child_id" property="orderChildId" jdbcType="BIGINT" />
+    <result column="operation_date" property="operationDate" jdbcType="TIMESTAMP" />
+    <result column="operation_type" property="operationType" jdbcType="INTEGER" />
+    <result column="operation_platform" property="operationPlatform" jdbcType="INTEGER" />
+    <result column="operator" property="operator" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="order_before_state" property="orderBeforeState" jdbcType="INTEGER" />
+    <result column="order_current_state" property="orderCurrentState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_type, order_id, order_child_id, operation_date, operation_type, operation_platform, 
+    operator, remark, order_before_state, order_current_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.order.model.OrderLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.order.model.OrderLogExample" >
+    delete from order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.order.model.OrderLog" >
+  
+    insert into order_log (id, order_type, order_id, 
+      order_child_id, operation_date, operation_type, 
+      operation_platform, operator, remark, 
+      order_before_state, order_current_state)
+    values (uuid_short(), #{orderType,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, 
+      #{orderChildId,jdbcType=BIGINT}, #{operationDate,jdbcType=TIMESTAMP}, #{operationType,jdbcType=INTEGER}, 
+      #{operationPlatform,jdbcType=INTEGER}, #{operator,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{orderBeforeState,jdbcType=INTEGER}, #{orderCurrentState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.order.model.OrderLog" >
+    insert into order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderChildId != null" >
+        order_child_id,
+      </if>
+      <if test="operationDate != null" >
+        operation_date,
+      </if>
+      <if test="operationType != null" >
+        operation_type,
+      </if>
+      <if test="operationPlatform != null" >
+        operation_platform,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="orderBeforeState != null" >
+        order_before_state,
+      </if>
+      <if test="orderCurrentState != null" >
+        order_current_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    
+        uuid_short(),
+    
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderChildId != null" >
+        #{orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="operationDate != null" >
+        #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null" >
+        #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="operationPlatform != null" >
+        #{operationPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBeforeState != null" >
+        #{orderBeforeState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCurrentState != null" >
+        #{orderCurrentState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.order.model.OrderLogExample" resultType="java.lang.Integer" >
+    select count(*) from order_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderChildId != null" >
+        order_child_id = #{record.orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operationDate != null" >
+        operation_date = #{record.operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operationType != null" >
+        operation_type = #{record.operationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.operationPlatform != null" >
+        operation_platform = #{record.operationPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="record.operator != null" >
+        operator = #{record.operator,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderBeforeState != null" >
+        order_before_state = #{record.orderBeforeState,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderCurrentState != null" >
+        order_current_state = #{record.orderCurrentState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_log
+    set id = #{record.id,jdbcType=BIGINT},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      order_child_id = #{record.orderChildId,jdbcType=BIGINT},
+      operation_date = #{record.operationDate,jdbcType=TIMESTAMP},
+      operation_type = #{record.operationType,jdbcType=INTEGER},
+      operation_platform = #{record.operationPlatform,jdbcType=INTEGER},
+      operator = #{record.operator,jdbcType=BIGINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      order_before_state = #{record.orderBeforeState,jdbcType=INTEGER},
+      order_current_state = #{record.orderCurrentState,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.order.model.OrderLog" >
+    update order_log
+    <set >
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderChildId != null" >
+        order_child_id = #{orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="operationDate != null" >
+        operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationType != null" >
+        operation_type = #{operationType,jdbcType=INTEGER},
+      </if>
+      <if test="operationPlatform != null" >
+        operation_platform = #{operationPlatform,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBeforeState != null" >
+        order_before_state = #{orderBeforeState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCurrentState != null" >
+        order_current_state = #{orderCurrentState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.order.model.OrderLog" >
+    update order_log
+    set order_type = #{orderType,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=BIGINT},
+      order_child_id = #{orderChildId,jdbcType=BIGINT},
+      operation_date = #{operationDate,jdbcType=TIMESTAMP},
+      operation_type = #{operationType,jdbcType=INTEGER},
+      operation_platform = #{operationPlatform,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_before_state = #{orderBeforeState,jdbcType=INTEGER},
+      order_current_state = #{orderCurrentState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

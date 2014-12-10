@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.order.mapper.OrderChildMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.order.model.OrderChild" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="evaluate_state" property="evaluateState" jdbcType="INTEGER" />
+    <result column="report_state" property="reportState" jdbcType="INTEGER" />
+    <result column="refund_statice" property="refundStatice" jdbcType="INTEGER" />
+    <result column="refund_state_roles" property="refundStateRoles" jdbcType="INTEGER" />
+    <result column="last_refund_id" property="lastRefundId" jdbcType="BIGINT" />
+    <result column="last_refud_type" property="lastRefudType" jdbcType="INTEGER" />
+    <result column="oricount" property="oricount" jdbcType="INTEGER" />
+    <result column="refund_fund" property="refundFund" jdbcType="DECIMAL" />
+    <result column="prd_id" property="prdId" jdbcType="BIGINT" />
+    <result column="prd_version" property="prdVersion" jdbcType="INTEGER" />
+    <result column="prd_standard_id" property="prdStandardId" jdbcType="BIGINT" />
+    <result column="prd_code" property="prdCode" jdbcType="BIGINT" />
+    <result column="prd_category_id" property="prdCategoryId" jdbcType="BIGINT" />
+    <result column="prd_category_name" property="prdCategoryName" jdbcType="VARCHAR" />
+    <result column="prd_brand_id" property="prdBrandId" jdbcType="BIGINT" />
+    <result column="prd_brand_name" property="prdBrandName" jdbcType="VARCHAR" />
+    <result column="prd_series_id" property="prdSeriesId" jdbcType="BIGINT" />
+    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+    <result column="prd_series_name" property="prdSeriesName" jdbcType="VARCHAR" />
+    <result column="prd_name" property="prdName" jdbcType="VARCHAR" />
+    <result column="prd_market_price" property="prdMarketPrice" jdbcType="DECIMAL" />
+    <result column="prd_pric" property="prdPric" jdbcType="DECIMAL" />
+    <result column="prd_standard" property="prdStandard" jdbcType="VARCHAR" />
+    <result column="prd_pic" property="prdPic" jdbcType="VARCHAR" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="buyer_nickname" property="buyerNickname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="acti_purpose" property="actiPurpose" jdbcType="VARCHAR" />
+    <result column="acti_price" property="actiPrice" jdbcType="DECIMAL" />
+    <result column="acti_age_min" property="actiAgeMin" jdbcType="INTEGER" />
+    <result column="acti_age_max" property="actiAgeMax" jdbcType="INTEGER" />
+    <result column="acti_gender" property="actiGender" jdbcType="INTEGER" />
+    <result column="acti_grade_low" property="actiGradeLow" jdbcType="INTEGER" />
+    <result column="acti_grade_high" property="actiGradeHigh" jdbcType="INTEGER" />
+    <result column="acti_user_type" property="actiUserType" jdbcType="INTEGER" />
+    <result column="acti_brand_num" property="actiBrandNum" jdbcType="INTEGER" />
+    <result column="acti_area" property="actiArea" jdbcType="VARCHAR" />
+    <result column="acti_area_id" property="actiAreaId" jdbcType="VARCHAR" />
+    <result column="acti_area_type" property="actiAreaType" jdbcType="INTEGER" />
+    <result column="acti_report_day" property="actiReportDay" jdbcType="INTEGER" />
+    <result column="stan_color_name" property="stanColorName" jdbcType="VARCHAR" />
+    <result column="stan_color_code" property="stanColorCode" jdbcType="INTEGER" />
+    <result column="stan_size_name" property="stanSizeName" jdbcType="VARCHAR" />
+    <result column="stan_size_code" property="stanSizeCode" jdbcType="INTEGER" />
+    <result column="pay_ingot_num" property="payIngotNum" jdbcType="INTEGER" />
+    <result column="refund_ingot_num" property="refundIngotNum" jdbcType="INTEGER" />
+    <result column="submit_report_time" property="submitReportTime" jdbcType="TIMESTAMP" />
+    <result column="submit_evaluate_time" property="submitEvaluateTime" jdbcType="TIMESTAMP" />
+    <result column="return_deposit_time" property="returnDepositTime" jdbcType="TIMESTAMP" />
+    <result column="revert_evaluate_time" property="revertEvaluateTime" jdbcType="TIMESTAMP" />
+    <result column="order_create_time" property="orderCreateTime" jdbcType="TIMESTAMP" />
+    <result column="order_resource_id" property="orderResourceId" jdbcType="VARCHAR" />
+    <result column="order_closed_time" property="orderClosedTime" jdbcType="TIMESTAMP" />
+    <result column="order_closed_remark" property="orderClosedRemark" jdbcType="VARCHAR" />
+    <result column="buyer_payment_time" property="buyerPaymentTime" jdbcType="TIMESTAMP" />
+    <result column="order_closed_id" property="orderClosedId" jdbcType="INTEGER" />
+    <result column="real_picer" property="realPicer" jdbcType="DECIMAL" />
+    <result column="buyer_signin_time" property="buyerSigninTime" jdbcType="TIMESTAMP" />
+    <result column="seller_deliver_ti" property="sellerDeliverTi" jdbcType="TIMESTAMP" />
+    <result column="is_delay_signin" property="isDelaySignin" jdbcType="INTEGER" />
+    <result column="crontab_time" property="crontabTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, order_code, state, evaluate_state, report_state, refund_statice, refund_state_roles, 
+    last_refund_id, last_refud_type, oricount, refund_fund, prd_id, prd_version, prd_standard_id, 
+    prd_code, prd_category_id, prd_category_name, prd_brand_id, prd_brand_name, prd_series_id, 
+    apply_id, prd_series_name, prd_name, prd_market_price, prd_pric, prd_standard, prd_pic, 
+    buyer_id, buyer_nickname, type, activity_id, acti_purpose, acti_price, acti_age_min, 
+    acti_age_max, acti_gender, acti_grade_low, acti_grade_high, acti_user_type, acti_brand_num, 
+    acti_area, acti_area_id, acti_area_type, acti_report_day, stan_color_name, stan_color_code, 
+    stan_size_name, stan_size_code, pay_ingot_num, refund_ingot_num, submit_report_time, 
+    submit_evaluate_time, return_deposit_time, revert_evaluate_time, order_create_time, 
+    order_resource_id, order_closed_time, order_closed_remark, buyer_payment_time, order_closed_id, 
+    real_picer, buyer_signin_time, seller_deliver_ti, is_delay_signin, crontab_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.order.model.OrderChildExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_child
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_child
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_child
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.order.model.OrderChildExample" >
+    delete from order_child
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.order.model.OrderChild" >
+  <selectKey resultType="java.lang.Long" order="BEFORE"  keyProperty="id">
+       	  SELECT fun_uuid(17) AS id
+     	 </selectKey>
+  
+    insert into order_child (id, order_id, order_code, 
+      state, evaluate_state, report_state, 
+      refund_statice, refund_state_roles, last_refund_id, 
+      last_refud_type, oricount, refund_fund, 
+      prd_id, prd_version, prd_standard_id, 
+      prd_code, prd_category_id, prd_category_name, 
+      prd_brand_id, prd_brand_name, prd_series_id, 
+      apply_id, prd_series_name, prd_name, 
+      prd_market_price, prd_pric, prd_standard, 
+      prd_pic, buyer_id, buyer_nickname, 
+      type, activity_id, acti_purpose, 
+      acti_price, acti_age_min, acti_age_max, 
+      acti_gender, acti_grade_low, acti_grade_high, 
+      acti_user_type, acti_brand_num, acti_area, 
+      acti_area_id, acti_area_type, acti_report_day, 
+      stan_color_name, stan_color_code, stan_size_name, 
+      stan_size_code, pay_ingot_num, refund_ingot_num, 
+      submit_report_time, submit_evaluate_time, 
+      return_deposit_time, revert_evaluate_time, 
+      order_create_time, order_resource_id, order_closed_time, 
+      order_closed_remark, buyer_payment_time, 
+      order_closed_id, real_picer, buyer_signin_time, 
+      seller_deliver_ti, is_delay_signin, crontab_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{evaluateState,jdbcType=INTEGER}, #{reportState,jdbcType=INTEGER}, 
+      #{refundStatice,jdbcType=INTEGER}, #{refundStateRoles,jdbcType=INTEGER}, #{lastRefundId,jdbcType=BIGINT}, 
+      #{lastRefudType,jdbcType=INTEGER}, #{oricount,jdbcType=INTEGER}, #{refundFund,jdbcType=DECIMAL}, 
+      #{prdId,jdbcType=BIGINT}, #{prdVersion,jdbcType=INTEGER}, #{prdStandardId,jdbcType=BIGINT}, 
+      #{prdCode,jdbcType=BIGINT}, #{prdCategoryId,jdbcType=BIGINT}, #{prdCategoryName,jdbcType=VARCHAR}, 
+      #{prdBrandId,jdbcType=BIGINT}, #{prdBrandName,jdbcType=VARCHAR}, #{prdSeriesId,jdbcType=BIGINT}, 
+      #{applyId,jdbcType=BIGINT}, #{prdSeriesName,jdbcType=VARCHAR}, #{prdName,jdbcType=VARCHAR}, 
+      #{prdMarketPrice,jdbcType=DECIMAL}, #{prdPric,jdbcType=DECIMAL}, #{prdStandard,jdbcType=VARCHAR}, 
+      #{prdPic,jdbcType=VARCHAR}, #{buyerId,jdbcType=BIGINT}, #{buyerNickname,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{activityId,jdbcType=BIGINT}, #{actiPurpose,jdbcType=VARCHAR}, 
+      #{actiPrice,jdbcType=DECIMAL}, #{actiAgeMin,jdbcType=INTEGER}, #{actiAgeMax,jdbcType=INTEGER}, 
+      #{actiGender,jdbcType=INTEGER}, #{actiGradeLow,jdbcType=INTEGER}, #{actiGradeHigh,jdbcType=INTEGER}, 
+      #{actiUserType,jdbcType=INTEGER}, #{actiBrandNum,jdbcType=INTEGER}, #{actiArea,jdbcType=VARCHAR}, 
+      #{actiAreaId,jdbcType=VARCHAR}, #{actiAreaType,jdbcType=INTEGER}, #{actiReportDay,jdbcType=INTEGER}, 
+      #{stanColorName,jdbcType=VARCHAR}, #{stanColorCode,jdbcType=INTEGER}, #{stanSizeName,jdbcType=VARCHAR}, 
+      #{stanSizeCode,jdbcType=INTEGER}, #{payIngotNum,jdbcType=INTEGER}, #{refundIngotNum,jdbcType=INTEGER}, 
+      #{submitReportTime,jdbcType=TIMESTAMP}, #{submitEvaluateTime,jdbcType=TIMESTAMP}, 
+      #{returnDepositTime,jdbcType=TIMESTAMP}, #{revertEvaluateTime,jdbcType=TIMESTAMP}, 
+      #{orderCreateTime,jdbcType=TIMESTAMP}, #{orderResourceId,jdbcType=VARCHAR}, #{orderClosedTime,jdbcType=TIMESTAMP}, 
+      #{orderClosedRemark,jdbcType=VARCHAR}, #{buyerPaymentTime,jdbcType=TIMESTAMP}, 
+      #{orderClosedId,jdbcType=INTEGER}, #{realPicer,jdbcType=DECIMAL}, #{buyerSigninTime,jdbcType=TIMESTAMP}, 
+      #{sellerDeliverTi,jdbcType=TIMESTAMP}, #{isDelaySignin,jdbcType=INTEGER}, #{crontabTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.order.model.OrderChild" >
+    insert into order_child
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="evaluateState != null" >
+        evaluate_state,
+      </if>
+      <if test="reportState != null" >
+        report_state,
+      </if>
+      <if test="refundStatice != null" >
+        refund_statice,
+      </if>
+      <if test="refundStateRoles != null" >
+        refund_state_roles,
+      </if>
+      <if test="lastRefundId != null" >
+        last_refund_id,
+      </if>
+      <if test="lastRefudType != null" >
+        last_refud_type,
+      </if>
+      <if test="oricount != null" >
+        oricount,
+      </if>
+      <if test="refundFund != null" >
+        refund_fund,
+      </if>
+      <if test="prdId != null" >
+        prd_id,
+      </if>
+      <if test="prdVersion != null" >
+        prd_version,
+      </if>
+      <if test="prdStandardId != null" >
+        prd_standard_id,
+      </if>
+      <if test="prdCode != null" >
+        prd_code,
+      </if>
+      <if test="prdCategoryId != null" >
+        prd_category_id,
+      </if>
+      <if test="prdCategoryName != null" >
+        prd_category_name,
+      </if>
+      <if test="prdBrandId != null" >
+        prd_brand_id,
+      </if>
+      <if test="prdBrandName != null" >
+        prd_brand_name,
+      </if>
+      <if test="prdSeriesId != null" >
+        prd_series_id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="prdSeriesName != null" >
+        prd_series_name,
+      </if>
+      <if test="prdName != null" >
+        prd_name,
+      </if>
+      <if test="prdMarketPrice != null" >
+        prd_market_price,
+      </if>
+      <if test="prdPric != null" >
+        prd_pric,
+      </if>
+      <if test="prdStandard != null" >
+        prd_standard,
+      </if>
+      <if test="prdPic != null" >
+        prd_pic,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="actiPurpose != null" >
+        acti_purpose,
+      </if>
+      <if test="actiPrice != null" >
+        acti_price,
+      </if>
+      <if test="actiAgeMin != null" >
+        acti_age_min,
+      </if>
+      <if test="actiAgeMax != null" >
+        acti_age_max,
+      </if>
+      <if test="actiGender != null" >
+        acti_gender,
+      </if>
+      <if test="actiGradeLow != null" >
+        acti_grade_low,
+      </if>
+      <if test="actiGradeHigh != null" >
+        acti_grade_high,
+      </if>
+      <if test="actiUserType != null" >
+        acti_user_type,
+      </if>
+      <if test="actiBrandNum != null" >
+        acti_brand_num,
+      </if>
+      <if test="actiArea != null" >
+        acti_area,
+      </if>
+      <if test="actiAreaId != null" >
+        acti_area_id,
+      </if>
+      <if test="actiAreaType != null" >
+        acti_area_type,
+      </if>
+      <if test="actiReportDay != null" >
+        acti_report_day,
+      </if>
+      <if test="stanColorName != null" >
+        stan_color_name,
+      </if>
+      <if test="stanColorCode != null" >
+        stan_color_code,
+      </if>
+      <if test="stanSizeName != null" >
+        stan_size_name,
+      </if>
+      <if test="stanSizeCode != null" >
+        stan_size_code,
+      </if>
+      <if test="payIngotNum != null" >
+        pay_ingot_num,
+      </if>
+      <if test="refundIngotNum != null" >
+        refund_ingot_num,
+      </if>
+      <if test="submitReportTime != null" >
+        submit_report_time,
+      </if>
+      <if test="submitEvaluateTime != null" >
+        submit_evaluate_time,
+      </if>
+      <if test="returnDepositTime != null" >
+        return_deposit_time,
+      </if>
+      <if test="revertEvaluateTime != null" >
+        revert_evaluate_time,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="orderResourceId != null" >
+        order_resource_id,
+      </if>
+      <if test="orderClosedTime != null" >
+        order_closed_time,
+      </if>
+      <if test="orderClosedRemark != null" >
+        order_closed_remark,
+      </if>
+      <if test="buyerPaymentTime != null" >
+        buyer_payment_time,
+      </if>
+      <if test="orderClosedId != null" >
+        order_closed_id,
+      </if>
+      <if test="realPicer != null" >
+        real_picer,
+      </if>
+      <if test="buyerSigninTime != null" >
+        buyer_signin_time,
+      </if>
+      <if test="sellerDeliverTi != null" >
+        seller_deliver_ti,
+      </if>
+      <if test="isDelaySignin != null" >
+        is_delay_signin,
+      </if>
+      <if test="crontabTime != null" >
+        crontab_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="evaluateState != null" >
+        #{evaluateState,jdbcType=INTEGER},
+      </if>
+      <if test="reportState != null" >
+        #{reportState,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatice != null" >
+        #{refundStatice,jdbcType=INTEGER},
+      </if>
+      <if test="refundStateRoles != null" >
+        #{refundStateRoles,jdbcType=INTEGER},
+      </if>
+      <if test="lastRefundId != null" >
+        #{lastRefundId,jdbcType=BIGINT},
+      </if>
+      <if test="lastRefudType != null" >
+        #{lastRefudType,jdbcType=INTEGER},
+      </if>
+      <if test="oricount != null" >
+        #{oricount,jdbcType=INTEGER},
+      </if>
+      <if test="refundFund != null" >
+        #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="prdId != null" >
+        #{prdId,jdbcType=BIGINT},
+      </if>
+      <if test="prdVersion != null" >
+        #{prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="prdStandardId != null" >
+        #{prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="prdCode != null" >
+        #{prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="prdCategoryId != null" >
+        #{prdCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="prdCategoryName != null" >
+        #{prdCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdBrandId != null" >
+        #{prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="prdBrandName != null" >
+        #{prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdSeriesId != null" >
+        #{prdSeriesId,jdbcType=BIGINT},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="prdSeriesName != null" >
+        #{prdSeriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdName != null" >
+        #{prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdMarketPrice != null" >
+        #{prdMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="prdPric != null" >
+        #{prdPric,jdbcType=DECIMAL},
+      </if>
+      <if test="prdStandard != null" >
+        #{prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="prdPic != null" >
+        #{prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="actiPurpose != null" >
+        #{actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="actiPrice != null" >
+        #{actiPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actiAgeMin != null" >
+        #{actiAgeMin,jdbcType=INTEGER},
+      </if>
+      <if test="actiAgeMax != null" >
+        #{actiAgeMax,jdbcType=INTEGER},
+      </if>
+      <if test="actiGender != null" >
+        #{actiGender,jdbcType=INTEGER},
+      </if>
+      <if test="actiGradeLow != null" >
+        #{actiGradeLow,jdbcType=INTEGER},
+      </if>
+      <if test="actiGradeHigh != null" >
+        #{actiGradeHigh,jdbcType=INTEGER},
+      </if>
+      <if test="actiUserType != null" >
+        #{actiUserType,jdbcType=INTEGER},
+      </if>
+      <if test="actiBrandNum != null" >
+        #{actiBrandNum,jdbcType=INTEGER},
+      </if>
+      <if test="actiArea != null" >
+        #{actiArea,jdbcType=VARCHAR},
+      </if>
+      <if test="actiAreaId != null" >
+        #{actiAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="actiAreaType != null" >
+        #{actiAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="actiReportDay != null" >
+        #{actiReportDay,jdbcType=INTEGER},
+      </if>
+      <if test="stanColorName != null" >
+        #{stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorCode != null" >
+        #{stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="stanSizeName != null" >
+        #{stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanSizeCode != null" >
+        #{stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="payIngotNum != null" >
+        #{payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundIngotNum != null" >
+        #{refundIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="submitReportTime != null" >
+        #{submitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitEvaluateTime != null" >
+        #{submitEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnDepositTime != null" >
+        #{returnDepositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revertEvaluateTime != null" >
+        #{revertEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderResourceId != null" >
+        #{orderResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderClosedTime != null" >
+        #{orderClosedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderClosedRemark != null" >
+        #{orderClosedRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPaymentTime != null" >
+        #{buyerPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderClosedId != null" >
+        #{orderClosedId,jdbcType=INTEGER},
+      </if>
+      <if test="realPicer != null" >
+        #{realPicer,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerSigninTime != null" >
+        #{buyerSigninTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerDeliverTi != null" >
+        #{sellerDeliverTi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelaySignin != null" >
+        #{isDelaySignin,jdbcType=INTEGER},
+      </if>
+      <if test="crontabTime != null" >
+        #{crontabTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.order.model.OrderChildExample" resultType="java.lang.Integer" >
+    select count(*) from order_child
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_child
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderCode != null" >
+        order_code = #{record.orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.evaluateState != null" >
+        evaluate_state = #{record.evaluateState,jdbcType=INTEGER},
+      </if>
+      <if test="record.reportState != null" >
+        report_state = #{record.reportState,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundStatice != null" >
+        refund_statice = #{record.refundStatice,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundStateRoles != null" >
+        refund_state_roles = #{record.refundStateRoles,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastRefundId != null" >
+        last_refund_id = #{record.lastRefundId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastRefudType != null" >
+        last_refud_type = #{record.lastRefudType,jdbcType=INTEGER},
+      </if>
+      <if test="record.oricount != null" >
+        oricount = #{record.oricount,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundFund != null" >
+        refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prdId != null" >
+        prd_id = #{record.prdId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdVersion != null" >
+        prd_version = #{record.prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.prdStandardId != null" >
+        prd_standard_id = #{record.prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdCode != null" >
+        prd_code = #{record.prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdCategoryId != null" >
+        prd_category_id = #{record.prdCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdCategoryName != null" >
+        prd_category_name = #{record.prdCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdBrandId != null" >
+        prd_brand_id = #{record.prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdBrandName != null" >
+        prd_brand_name = #{record.prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdSeriesId != null" >
+        prd_series_id = #{record.prdSeriesId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyId != null" >
+        apply_id = #{record.applyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdSeriesName != null" >
+        prd_series_name = #{record.prdSeriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdName != null" >
+        prd_name = #{record.prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdMarketPrice != null" >
+        prd_market_price = #{record.prdMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prdPric != null" >
+        prd_pric = #{record.prdPric,jdbcType=DECIMAL},
+      </if>
+      <if test="record.prdStandard != null" >
+        prd_standard = #{record.prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdPic != null" >
+        prd_pic = #{record.prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerNickname != null" >
+        buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.actiPurpose != null" >
+        acti_purpose = #{record.actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actiPrice != null" >
+        acti_price = #{record.actiPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actiAgeMin != null" >
+        acti_age_min = #{record.actiAgeMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiAgeMax != null" >
+        acti_age_max = #{record.actiAgeMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiGender != null" >
+        acti_gender = #{record.actiGender,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiGradeLow != null" >
+        acti_grade_low = #{record.actiGradeLow,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiGradeHigh != null" >
+        acti_grade_high = #{record.actiGradeHigh,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiUserType != null" >
+        acti_user_type = #{record.actiUserType,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiBrandNum != null" >
+        acti_brand_num = #{record.actiBrandNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiArea != null" >
+        acti_area = #{record.actiArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actiAreaId != null" >
+        acti_area_id = #{record.actiAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actiAreaType != null" >
+        acti_area_type = #{record.actiAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="record.actiReportDay != null" >
+        acti_report_day = #{record.actiReportDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.stanColorName != null" >
+        stan_color_name = #{record.stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stanColorCode != null" >
+        stan_color_code = #{record.stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.stanSizeName != null" >
+        stan_size_name = #{record.stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stanSizeCode != null" >
+        stan_size_code = #{record.stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.payIngotNum != null" >
+        pay_ingot_num = #{record.payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundIngotNum != null" >
+        refund_ingot_num = #{record.refundIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.submitReportTime != null" >
+        submit_report_time = #{record.submitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.submitEvaluateTime != null" >
+        submit_evaluate_time = #{record.submitEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.returnDepositTime != null" >
+        return_deposit_time = #{record.returnDepositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.revertEvaluateTime != null" >
+        revert_evaluate_time = #{record.revertEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderCreateTime != null" >
+        order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderResourceId != null" >
+        order_resource_id = #{record.orderResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderClosedTime != null" >
+        order_closed_time = #{record.orderClosedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderClosedRemark != null" >
+        order_closed_remark = #{record.orderClosedRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPaymentTime != null" >
+        buyer_payment_time = #{record.buyerPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderClosedId != null" >
+        order_closed_id = #{record.orderClosedId,jdbcType=INTEGER},
+      </if>
+      <if test="record.realPicer != null" >
+        real_picer = #{record.realPicer,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyerSigninTime != null" >
+        buyer_signin_time = #{record.buyerSigninTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerDeliverTi != null" >
+        seller_deliver_ti = #{record.sellerDeliverTi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelaySignin != null" >
+        is_delay_signin = #{record.isDelaySignin,jdbcType=INTEGER},
+      </if>
+      <if test="record.crontabTime != null" >
+        crontab_time = #{record.crontabTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_child
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      order_code = #{record.orderCode,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      evaluate_state = #{record.evaluateState,jdbcType=INTEGER},
+      report_state = #{record.reportState,jdbcType=INTEGER},
+      refund_statice = #{record.refundStatice,jdbcType=INTEGER},
+      refund_state_roles = #{record.refundStateRoles,jdbcType=INTEGER},
+      last_refund_id = #{record.lastRefundId,jdbcType=BIGINT},
+      last_refud_type = #{record.lastRefudType,jdbcType=INTEGER},
+      oricount = #{record.oricount,jdbcType=INTEGER},
+      refund_fund = #{record.refundFund,jdbcType=DECIMAL},
+      prd_id = #{record.prdId,jdbcType=BIGINT},
+      prd_version = #{record.prdVersion,jdbcType=INTEGER},
+      prd_standard_id = #{record.prdStandardId,jdbcType=BIGINT},
+      prd_code = #{record.prdCode,jdbcType=BIGINT},
+      prd_category_id = #{record.prdCategoryId,jdbcType=BIGINT},
+      prd_category_name = #{record.prdCategoryName,jdbcType=VARCHAR},
+      prd_brand_id = #{record.prdBrandId,jdbcType=BIGINT},
+      prd_brand_name = #{record.prdBrandName,jdbcType=VARCHAR},
+      prd_series_id = #{record.prdSeriesId,jdbcType=BIGINT},
+      apply_id = #{record.applyId,jdbcType=BIGINT},
+      prd_series_name = #{record.prdSeriesName,jdbcType=VARCHAR},
+      prd_name = #{record.prdName,jdbcType=VARCHAR},
+      prd_market_price = #{record.prdMarketPrice,jdbcType=DECIMAL},
+      prd_pric = #{record.prdPric,jdbcType=DECIMAL},
+      prd_standard = #{record.prdStandard,jdbcType=VARCHAR},
+      prd_pic = #{record.prdPic,jdbcType=VARCHAR},
+      buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      activity_id = #{record.activityId,jdbcType=BIGINT},
+      acti_purpose = #{record.actiPurpose,jdbcType=VARCHAR},
+      acti_price = #{record.actiPrice,jdbcType=DECIMAL},
+      acti_age_min = #{record.actiAgeMin,jdbcType=INTEGER},
+      acti_age_max = #{record.actiAgeMax,jdbcType=INTEGER},
+      acti_gender = #{record.actiGender,jdbcType=INTEGER},
+      acti_grade_low = #{record.actiGradeLow,jdbcType=INTEGER},
+      acti_grade_high = #{record.actiGradeHigh,jdbcType=INTEGER},
+      acti_user_type = #{record.actiUserType,jdbcType=INTEGER},
+      acti_brand_num = #{record.actiBrandNum,jdbcType=INTEGER},
+      acti_area = #{record.actiArea,jdbcType=VARCHAR},
+      acti_area_id = #{record.actiAreaId,jdbcType=VARCHAR},
+      acti_area_type = #{record.actiAreaType,jdbcType=INTEGER},
+      acti_report_day = #{record.actiReportDay,jdbcType=INTEGER},
+      stan_color_name = #{record.stanColorName,jdbcType=VARCHAR},
+      stan_color_code = #{record.stanColorCode,jdbcType=INTEGER},
+      stan_size_name = #{record.stanSizeName,jdbcType=VARCHAR},
+      stan_size_code = #{record.stanSizeCode,jdbcType=INTEGER},
+      pay_ingot_num = #{record.payIngotNum,jdbcType=INTEGER},
+      refund_ingot_num = #{record.refundIngotNum,jdbcType=INTEGER},
+      submit_report_time = #{record.submitReportTime,jdbcType=TIMESTAMP},
+      submit_evaluate_time = #{record.submitEvaluateTime,jdbcType=TIMESTAMP},
+      return_deposit_time = #{record.returnDepositTime,jdbcType=TIMESTAMP},
+      revert_evaluate_time = #{record.revertEvaluateTime,jdbcType=TIMESTAMP},
+      order_create_time = #{record.orderCreateTime,jdbcType=TIMESTAMP},
+      order_resource_id = #{record.orderResourceId,jdbcType=VARCHAR},
+      order_closed_time = #{record.orderClosedTime,jdbcType=TIMESTAMP},
+      order_closed_remark = #{record.orderClosedRemark,jdbcType=VARCHAR},
+      buyer_payment_time = #{record.buyerPaymentTime,jdbcType=TIMESTAMP},
+      order_closed_id = #{record.orderClosedId,jdbcType=INTEGER},
+      real_picer = #{record.realPicer,jdbcType=DECIMAL},
+      buyer_signin_time = #{record.buyerSigninTime,jdbcType=TIMESTAMP},
+      seller_deliver_ti = #{record.sellerDeliverTi,jdbcType=TIMESTAMP},
+      is_delay_signin = #{record.isDelaySignin,jdbcType=INTEGER},
+      crontab_time = #{record.crontabTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.order.model.OrderChild" >
+    update order_child
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="evaluateState != null" >
+        evaluate_state = #{evaluateState,jdbcType=INTEGER},
+      </if>
+      <if test="reportState != null" >
+        report_state = #{reportState,jdbcType=INTEGER},
+      </if>
+      <if test="refundStatice != null" >
+        refund_statice = #{refundStatice,jdbcType=INTEGER},
+      </if>
+      <if test="refundStateRoles != null" >
+        refund_state_roles = #{refundStateRoles,jdbcType=INTEGER},
+      </if>
+      <if test="lastRefundId != null" >
+        last_refund_id = #{lastRefundId,jdbcType=BIGINT},
+      </if>
+      <if test="lastRefudType != null" >
+        last_refud_type = #{lastRefudType,jdbcType=INTEGER},
+      </if>
+      <if test="oricount != null" >
+        oricount = #{oricount,jdbcType=INTEGER},
+      </if>
+      <if test="refundFund != null" >
+        refund_fund = #{refundFund,jdbcType=DECIMAL},
+      </if>
+      <if test="prdId != null" >
+        prd_id = #{prdId,jdbcType=BIGINT},
+      </if>
+      <if test="prdVersion != null" >
+        prd_version = #{prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="prdStandardId != null" >
+        prd_standard_id = #{prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="prdCode != null" >
+        prd_code = #{prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="prdCategoryId != null" >
+        prd_category_id = #{prdCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="prdCategoryName != null" >
+        prd_category_name = #{prdCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdBrandId != null" >
+        prd_brand_id = #{prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="prdBrandName != null" >
+        prd_brand_name = #{prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdSeriesId != null" >
+        prd_series_id = #{prdSeriesId,jdbcType=BIGINT},
+      </if>
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="prdSeriesName != null" >
+        prd_series_name = #{prdSeriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdName != null" >
+        prd_name = #{prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdMarketPrice != null" >
+        prd_market_price = #{prdMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="prdPric != null" >
+        prd_pric = #{prdPric,jdbcType=DECIMAL},
+      </if>
+      <if test="prdStandard != null" >
+        prd_standard = #{prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="prdPic != null" >
+        prd_pic = #{prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="actiPurpose != null" >
+        acti_purpose = #{actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="actiPrice != null" >
+        acti_price = #{actiPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actiAgeMin != null" >
+        acti_age_min = #{actiAgeMin,jdbcType=INTEGER},
+      </if>
+      <if test="actiAgeMax != null" >
+        acti_age_max = #{actiAgeMax,jdbcType=INTEGER},
+      </if>
+      <if test="actiGender != null" >
+        acti_gender = #{actiGender,jdbcType=INTEGER},
+      </if>
+      <if test="actiGradeLow != null" >
+        acti_grade_low = #{actiGradeLow,jdbcType=INTEGER},
+      </if>
+      <if test="actiGradeHigh != null" >
+        acti_grade_high = #{actiGradeHigh,jdbcType=INTEGER},
+      </if>
+      <if test="actiUserType != null" >
+        acti_user_type = #{actiUserType,jdbcType=INTEGER},
+      </if>
+      <if test="actiBrandNum != null" >
+        acti_brand_num = #{actiBrandNum,jdbcType=INTEGER},
+      </if>
+      <if test="actiArea != null" >
+        acti_area = #{actiArea,jdbcType=VARCHAR},
+      </if>
+      <if test="actiAreaId != null" >
+        acti_area_id = #{actiAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="actiAreaType != null" >
+        acti_area_type = #{actiAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="actiReportDay != null" >
+        acti_report_day = #{actiReportDay,jdbcType=INTEGER},
+      </if>
+      <if test="stanColorName != null" >
+        stan_color_name = #{stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorCode != null" >
+        stan_color_code = #{stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="stanSizeName != null" >
+        stan_size_name = #{stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanSizeCode != null" >
+        stan_size_code = #{stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="payIngotNum != null" >
+        pay_ingot_num = #{payIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundIngotNum != null" >
+        refund_ingot_num = #{refundIngotNum,jdbcType=INTEGER},
+      </if>
+      <if test="submitReportTime != null" >
+        submit_report_time = #{submitReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitEvaluateTime != null" >
+        submit_evaluate_time = #{submitEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnDepositTime != null" >
+        return_deposit_time = #{returnDepositTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revertEvaluateTime != null" >
+        revert_evaluate_time = #{revertEvaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderResourceId != null" >
+        order_resource_id = #{orderResourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderClosedTime != null" >
+        order_closed_time = #{orderClosedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderClosedRemark != null" >
+        order_closed_remark = #{orderClosedRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPaymentTime != null" >
+        buyer_payment_time = #{buyerPaymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderClosedId != null" >
+        order_closed_id = #{orderClosedId,jdbcType=INTEGER},
+      </if>
+      <if test="realPicer != null" >
+        real_picer = #{realPicer,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerSigninTime != null" >
+        buyer_signin_time = #{buyerSigninTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerDeliverTi != null" >
+        seller_deliver_ti = #{sellerDeliverTi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelaySignin != null" >
+        is_delay_signin = #{isDelaySignin,jdbcType=INTEGER},
+      </if>
+      <if test="crontabTime != null" >
+        crontab_time = #{crontabTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.order.model.OrderChild" >
+    update order_child
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      evaluate_state = #{evaluateState,jdbcType=INTEGER},
+      report_state = #{reportState,jdbcType=INTEGER},
+      refund_statice = #{refundStatice,jdbcType=INTEGER},
+      refund_state_roles = #{refundStateRoles,jdbcType=INTEGER},
+      last_refund_id = #{lastRefundId,jdbcType=BIGINT},
+      last_refud_type = #{lastRefudType,jdbcType=INTEGER},
+      oricount = #{oricount,jdbcType=INTEGER},
+      refund_fund = #{refundFund,jdbcType=DECIMAL},
+      prd_id = #{prdId,jdbcType=BIGINT},
+      prd_version = #{prdVersion,jdbcType=INTEGER},
+      prd_standard_id = #{prdStandardId,jdbcType=BIGINT},
+      prd_code = #{prdCode,jdbcType=BIGINT},
+      prd_category_id = #{prdCategoryId,jdbcType=BIGINT},
+      prd_category_name = #{prdCategoryName,jdbcType=VARCHAR},
+      prd_brand_id = #{prdBrandId,jdbcType=BIGINT},
+      prd_brand_name = #{prdBrandName,jdbcType=VARCHAR},
+      prd_series_id = #{prdSeriesId,jdbcType=BIGINT},
+      apply_id = #{applyId,jdbcType=BIGINT},
+      prd_series_name = #{prdSeriesName,jdbcType=VARCHAR},
+      prd_name = #{prdName,jdbcType=VARCHAR},
+      prd_market_price = #{prdMarketPrice,jdbcType=DECIMAL},
+      prd_pric = #{prdPric,jdbcType=DECIMAL},
+      prd_standard = #{prdStandard,jdbcType=VARCHAR},
+      prd_pic = #{prdPic,jdbcType=VARCHAR},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      acti_purpose = #{actiPurpose,jdbcType=VARCHAR},
+      acti_price = #{actiPrice,jdbcType=DECIMAL},
+      acti_age_min = #{actiAgeMin,jdbcType=INTEGER},
+      acti_age_max = #{actiAgeMax,jdbcType=INTEGER},
+      acti_gender = #{actiGender,jdbcType=INTEGER},
+      acti_grade_low = #{actiGradeLow,jdbcType=INTEGER},
+      acti_grade_high = #{actiGradeHigh,jdbcType=INTEGER},
+      acti_user_type = #{actiUserType,jdbcType=INTEGER},
+      acti_brand_num = #{actiBrandNum,jdbcType=INTEGER},
+      acti_area = #{actiArea,jdbcType=VARCHAR},
+      acti_area_id = #{actiAreaId,jdbcType=VARCHAR},
+      acti_area_type = #{actiAreaType,jdbcType=INTEGER},
+      acti_report_day = #{actiReportDay,jdbcType=INTEGER},
+      stan_color_name = #{stanColorName,jdbcType=VARCHAR},
+      stan_color_code = #{stanColorCode,jdbcType=INTEGER},
+      stan_size_name = #{stanSizeName,jdbcType=VARCHAR},
+      stan_size_code = #{stanSizeCode,jdbcType=INTEGER},
+      pay_ingot_num = #{payIngotNum,jdbcType=INTEGER},
+      refund_ingot_num = #{refundIngotNum,jdbcType=INTEGER},
+      submit_report_time = #{submitReportTime,jdbcType=TIMESTAMP},
+      submit_evaluate_time = #{submitEvaluateTime,jdbcType=TIMESTAMP},
+      return_deposit_time = #{returnDepositTime,jdbcType=TIMESTAMP},
+      revert_evaluate_time = #{revertEvaluateTime,jdbcType=TIMESTAMP},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_resource_id = #{orderResourceId,jdbcType=VARCHAR},
+      order_closed_time = #{orderClosedTime,jdbcType=TIMESTAMP},
+      order_closed_remark = #{orderClosedRemark,jdbcType=VARCHAR},
+      buyer_payment_time = #{buyerPaymentTime,jdbcType=TIMESTAMP},
+      order_closed_id = #{orderClosedId,jdbcType=INTEGER},
+      real_picer = #{realPicer,jdbcType=DECIMAL},
+      buyer_signin_time = #{buyerSigninTime,jdbcType=TIMESTAMP},
+      seller_deliver_ti = #{sellerDeliverTi,jdbcType=TIMESTAMP},
+      is_delay_signin = #{isDelaySignin,jdbcType=INTEGER},
+      crontab_time = #{crontabTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

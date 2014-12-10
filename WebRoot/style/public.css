@@ -1,0 +1,121 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5,h6, form, input, select, button, textarea, iframe, table, th, td { margin: 0;padding: 0; }
+img { border: 0 none; vertical-align: top; }
+ul, li { list-style-type: none; }
+h1, h2, h3, h4, h5, h6 { font-size: 14px; font-weight:normal;}
+body, input, select, button, textarea { font-size: 12px;font-family:"\5FAE\8F6F\96C5\9ED1";}
+button { cursor: pointer; }
+i, em, cite { font-style: normal; }
+body { line-height: 1.2;}
+a, a:link { color: #666; text-decoration: none; }
+a:visited {}
+a:active, a:hover { text-decoration:none; }
+a:focus { outline: none; }
+.fixed:after { content: "."; display: block; clear:both; height: 0; visibility: hidden; }
+.fixed { display: block; min-height: 1%; }
+*html .fixed { height: 1%; }
+.clear { clear:both;}
+.more { float: right; }
+.more a {font-weight: normal; font-size: 12px; }
+.fl { display: inline; float: left; }
+.fr { float: right; }
+
+
+#wapper{ width:100%;}
+.main{ width:1000px; margin:0 auto;}
+
+
+
+
+.green{ background:#f7fceb;}
+.white{ background:#fff;}
+.background_gray{ background:#f5f5f5;}
+
+
+
+.yellow{ color:#f60;}/**字体黄色**/
+.gray{ color:#666;}/**字体灰色**/
+.luse{ color:#6fa300;}/**字体绿色**/
+.red{ color:#f00;}/**字体红色**/
+
+a.yellow{ color:#f60;}/**字体黄色**/
+a.luse{ color:#6fa300;}/**字体绿色**/
+a.blue{ color:#0096ff;}/**字体蓝色**/
+a.red{ color:#f00;}/**字体红色**/
+
+.border90e303{ border:1px solid #90e303;}
+
+
+input.txt01{ width:200px;}
+input.txt02{ width:120px;}
+input.state01{ width:160px;}
+input.state02{ width:285px;}
+input.width195{ width:185px;}
+
+
+.top_left{ margin:16px 0 0 210px}
+.left01{ margin-left:20px;}
+
+.top10{ margin-top:10px;}
+.top15{ margin-top:15px;}
+.top20{ margin-top:20px;}
+.top25{ margin-top:25px;}
+.top30{ margin-top:30px;}
+.top35{ margin-top:35px;}
+
+.left25{ margin-left:25px;}
+
+
+.height28{ height:30px;}
+
+
+
+.fize14{ font-size:14px;}
+.fize12{ font-size:12px;}
+.fize16{ font-size:24px; font-weight:bold; font-family:"Arial Unicode MS"; color:#f60; position: relative; top:-2px;}
+
+
+
+
+
+.passw_wz{ font-size:14px; font-family:"宋体"; line-height:76px;}
+.passw_wz span{ color:#84c100;}
+
+
+
+
+
+
+.classify_right{ width:250px;}
+.n_js{ width:230px; background:#fff; padding:10px; box-shadow:2px 2px 3px #e1e1e1;}
+.n_js h2{ font-size:18px; color:#000; height:40px; line-height:30px; padding:0 2px;}
+.new_banner{width:230px;height:230px; position:relative; margin:0 auto; background:url(../images/loading.gif) no-repeat center center #fff;}
+.rslides{width:100%;position:relative;list-style:none;padding:0}
+
+.rslides_tabs{ position:absolute; right:0px; bottom:5px;clear:both;text-align:center; z-index:99999;}
+.rslides_tabs li{display:inline;float:none;_float:left;*float:left;margin-right:5px}
+.rslides_tabs a{ width:12px; height:12px; background:#fff;text-indent:-5em; overflow:hidden; display:block; float:left; margin-left:6px;border-radius:6px;}
+.rslides_tabs .rslides_here a{ background:#90d300;}
+
+
+
+
+DIV.yahoo {
+	  TEXT-ALIGN: center; float:right; color:#666;
+}
+DIV.yahoo input{ width:27px; height:16px; border:1px solid #f39700; text-align:center; margin:0 5px}
+DIV.yahoo  a.go{ width:29px; height:22px; background:#f39700; color:#fff; text-decoration:none; margin:2px 0 0 5px;}
+DIV.yahoo A {
+	 PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; MARGIN: 1px; COLOR: #666; PADDING-TOP: 2px; TEXT-DECORATION: none;
+}
+
+DIV.yahoo SPAN.current {
+	 FONT-WEIGHT: bold; COLOR: #000;
+}
+DIV.yahoo SPAN.disabled {
+	  COLOR: #666;
+}
+
+.scroll_banner{ border-bottom:1px dashed #ccc; padding-bottom:20px;}
+.scroll_banner span{ width:475px; padding-left:25px; line-height:18px; font-size:14px; background:url(../images/icon/img_02.png) no-repeat 0 0px;}

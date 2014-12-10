@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 登录页面样式 */
+.box{ width:1000px; margin:0 auto;}
+.box a.login_logo{ float:left; width:336px; height:70px; background:url(../images/login_03.jpg) no-repeat; margin:36px 0 34px 0;}
+
+.login_main{ clear:both;}
+.login_m_l{ float:left; width:653px; height:448px; background:url(../images/login_07.jpg) no-repeat; box-shadow:2px 2px 3px #E2E2E2;}
+.login_m_r{ float:right; width:300px; height:447px; padding:0 23px; border:1px solid #c9c9c9; border-left:none;}
+.login_m_r h2{ font-size:16px; font-weight:normal; text-align:center; color:#690; line-height:60px;}
+.login_m_c{ padding:0 25px 20px 25px; border-bottom:1px dashed #aca8a7;}
+
+.login_m_c p{ clear:both; height:20px; line-height:20px; padding:0 5px; color:#c00;}
+.login_input01{ width:242px; height:30px; border:1px solid #a0a0a0;border-radius:2px; padding:0 0 0 6px;}
+.login_input02{ width:250px; height:30px; line-height:32px;}
+.login_input01 span.login_icon01{ float:left; width:16px; height:19px; background:url(../images/icon/login_14.jpg) no-repeat; margin:6px 0 5px 0;}
+.login_input01 span.login_icon02{ float:left; width:16px; height:19px; background:url(../images/icon/login_13.jpg) no-repeat; margin:6px 0 5px 0;}
+.login_input01 input.loginFormTdIpt{ border:none; height:30px; margin:0 0 0 8px; width:208px;border-radius:2px; color:#999; padding:0 5px;}
+
+.login_input02 input.login_yzm{ float:left; width:110px; height:30px; border-radius:2px; border:1px solid #a0a0a0; color:#999; padding:0 5px;}
+.login_input02 span,.login_input02 a{ margin-left:6px; font-size:12px; color:#6fa300;}
+.login_input{ width:250px; margin-top:10px;}
+.login_input form span{ float:left; margin-right:10px;}
+.login_input form span input{ float:left; margin:0 6px 0 0;}
+.login_input a{ float:right;}
+.login_input a:hover{  text-decoration:underline;}
+
+.login_m_c a.login_anniu{ float:left; text-align:center; line-height:35px; font-size:16px; margin:10px 0 14px 0; color:#fff; font-weight:bold; width:250px; height:35px; background:url(../images/img/passw01.jpg) repeat-x;}
+.login_m_c p.login_zhuc{ width:245px; color:#999; text-align:right; color:#f60;}
+.login_m_c p.login_zhuc a{ color:#f60;}
+.login_m_c p.login_zhuc a:hover{ text-decoration:underline;}
+
+.login_m_b{ float:left; width:304px; height:86px; background:url(../images/icon/login_20.jpg) no-repeat; margin-top:10px;}
+
+
+
+
+
+
+/* 注册页面样式 */
+.regis_left{ float:left; width:535px;}
+.regis_img{ width:535px; height:510px; background:url(../images/Registration_03.jpg) no-repeat; box-shadow:3px 3px 3px #E2E2E2;}
+.regis_bottom{ width:354px; height:95px; background:url(../images/icon/Registration_11.jpg) no-repeat; margin:30px auto;}
+
+
+.regis_right{ float:right; width:430px; position:relative; top:-35px;}
+.regis_right h2{ font-size:16px; font-weight:normal; color:#690;}
+.regis_cent{ margin-top:20px;}
+.regis_cent ul{ float:left; padding:0 14px;}
+.regis_cent ul.regis_cent02{ background:#f0fec8;}
+.regis_cent ul li{ float:left; line-height:28px; margin:6px 0;}
+.regis_cent ul li span.fize14{ float:left; width:70px; font-size:14px; text-align:right; color:#333;}
+.regis_cent ul li input.loginFormTdIpt_a{float:left; height:28px; border-radius:2px; line-height:28px; color:#999; border:1px solid #a0a0a0; width:240px; padding:0 5px;}
+.regis_cent ul li input.loginFormTdIpt_a01{float:left; height:28px; border-radius:2px; line-height:28px; color:#999; border:1px solid #f60; width:240px; padding:0 5px;}
+.regis_cent ul li input.loginFormTdIpt_b{float:left; height:28px; border-radius:2px; line-height:28px; color:#999; border:1px solid #a0a0a0; width:110px; padding:0 5px;}
+.regis_cent ul li select.loginFormTdIpt_c{float:left; height:28px; border-radius:2px; line-height:28px; color:#999; border:1px solid #f60; width:76px; margin-right:12px;}
+.regis_cent ul li select.loginFormTdIpt_d{float:left; height:28px; border-radius:2px; line-height:28px; color:#999; border:1px solid #a0a0a0; width:120px; margin-right:12px;}
+.regis_cent ul li a.regis_yzm{ float:left; width:120px; height:30px; background:url(../images/img/yzm03.jpg) repeat-x; margin-left:10px; text-align:center; color:#fff; font-size:14px; border-radius:2px;}
+.regis_cent ul li span.nanv{ float:left; margin-right:18px;}
+.regis_cent ul li span.nanv input.nanv01{ float:left; margin:7px 6px 0 0;}
+.regis_cent ul li input.login_yzm{ float:left; width:110px; height:28px; border-radius:2px; border:1px solid #a0a0a0; color:#999; padding:0 5px;}
+.regis_cent ul li span,.regis_cent ul li a{ margin-left:6px; font-size:12px; color:#6fa300;}
+.regis_cent ul li span.regis_gx{ float:left; margin-left:80px;}
+.regis_cent ul li span.regis_gx input{ float:left; margin-top:8px;}
+.regis_cent ul li a.width130{ display:block; padding:0 122px; height:35px; background:url(../images/img/passw01.jpg) repeat-x; text-align:center; line-height:35px; font-size:14px; color:#fff; margin-top:30px;}
+.regis_cent ul li p{ margin-left:60px; color:#999;}
+.regis_cent ul li p a:hover{ text-decoration:underline;}
+.regis_cent ul li p a.yellow{ color:#f60;}
+.regis_cent ul li span.regis_ys01{ width:75px; color:#6fa300; position:absolute; line-height:15px;}
+.regis_cent ul li span.regis_ys02{ width:75px; color:#e54b00; position:absolute; line-height:28px;}

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	 http://www.springframework.org/schema/lang 
+	 http://www.w3.org/2001/XMLSchema-instance 
+	 http://www.springframework.org/schema/context 
+	 http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	 http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
+	 http://www.springframework.org/schema/mvc 
+	 http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
+	default-lazy-init="true">
+	
+<!-- 	<mvc:annotation-driven /> -->
+  	<!-- 把标记了@Controller注解的类转换为bean -->
+  	<!-- ①：对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 --> 
+  	<!-- 在springMVC配置文件中将Service注解给去掉 -->
+	<context:component-scan base-package="com">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+  	 
+    <!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->  
+   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/> 
+   
+    <!--  ③：对模型视图名称的解析，即在模型视图名称添加前后缀 -->  
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"  -->
+<!-- 		p:viewClass="org.springframework.web.servlet.view.JstlView" -->
+<!-- 		p:prefix="/WEB-INF/jsps/" p:suffix=".jsp" p:contentType="text/html;charset=UTF-8"> -->
+<!-- 	</bean> -->
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器,顺序执行 -->
+			<mvc:interceptor>
+				<mvc:mapping path="/**" />
+
+				<!--自动登录拦截器 -->
+				<bean class="com.qianqian.util.AutoLoninInterceptor">
+				</bean>
+			</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<!-- 拦截所有匹配请求  可以指定多个规则 -->
+  			<mvc:mapping path="/**" />  			 
+			<!--登录鉴权拦截器 -->
+			<bean class="com.framelib.interceptor.AuthenticateInterceptor">
+				<property name="loginUrl" value="/user/toLogin.htm"></property>
+				<property name="ajaxTipCode" value="501"></property><!--拦截未登录ajax请求后返回的提示代码 -->	
+				<property name="uncheckUrls">
+					<list>
+						<value>/apply/forSupport/*.htm</value>
+						<value>/*</value>
+						<value>/order/*</value>
+						<value>/apply/*</value>
+						<value>/support/*</value>
+						<value>/report/*</value>
+						<value>/comment/*</value>
+					</list>
+				</property>			
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 处理json格式 -->
+		<bean id="customObjectMapper" class="com.framelib.utils.jsonserializer.CustomObjectMapper" />
+
+    <!-- 根据客户端的不同的请求决定不同的view进行响应, 如 /blog/1.json /blog/1.xml -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+                <!-- 设置为true以忽略对Accept Header的支持-->
+    	        <property name="ignoreAcceptHeader" value="true"/>
+                <!-- 在没有扩展名时即: "/user/1" 时的默认展现形式 -->
+		<property name="defaultContentType" value="text/html"/>
+		
+    	        <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="jsonp" value="application/javascript" />
+			</map>
+		</property>
+		<!-- 用于开启 /userinfo/123?format=json 的支持 -->
+		<property name="favorParameter" value="false"/>
+		<property name="viewResolvers">
+			<list>
+			    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+			    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+			        <property name="prefix" value="/WEB-INF/jsps/"/>
+			        <property name="suffix" value=".jsp"></property>
+			    </bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<!-- for application/json -->
+					<bean
+						class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+						<property name="objectMapper" ref="customObjectMapper"></property>
+					</bean>
+					<bean class="com.framelib.utils.jsonserializer.MappingJacksonJsonpView">
+						<property name="objectMapper" ref="customObjectMapper"></property>
+					</bean>
+			</list>
+		</property>
+    </bean>
+
+	<!-- 全局异常处理配置 start -->
+	<bean id="exceptionResolver" class="com.framelib.exception.ExceptionHandler">
+		<property name="ajaxErrorCode" value="500"></property><!-- ajax 请求错误后返回的错误代码，必须int类型 -->
+		<property name="errorUrl" value="/showError.htm"></property><!-- 普通请求错误后转发的请求 -->
+	</bean>
+	<!-- 全局异常配置 end -->
+</beans>

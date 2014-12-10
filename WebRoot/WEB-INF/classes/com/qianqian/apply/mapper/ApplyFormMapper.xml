@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.apply.mapper.ApplyFormMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.apply.model.ApplyForm" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="slogan" property="slogan" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="support_count" property="supportCount" jdbcType="INTEGER" />
+    <result column="apply_state" property="applyState" jdbcType="INTEGER" />
+    <result column="submit_state" property="submitState" jdbcType="INTEGER" />
+    <result column="audit_by" property="auditBy" jdbcType="BIGINT" />
+    <result column="audit_start_time" property="auditStartTime" jdbcType="TIMESTAMP" />
+    <result column="pass_time" property="passTime" jdbcType="TIMESTAMP" />
+    <result column="audit_end_time" property="auditEndTime" jdbcType="TIMESTAMP" />
+    <result column="submit_end_time" property="submitEndTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="product_code" property="productCode" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="brand_code" property="brandCode" jdbcType="BIGINT" />
+    <result column="active_id" property="activeId" jdbcType="BIGINT" />
+    <result column="apply_note" property="applyNote" jdbcType="VARCHAR" />
+    <result column="standard_id" property="standardId" jdbcType="BIGINT" />
+    <result column="submit_order_time" property="submitOrderTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, slogan, reason, support_count, apply_state, submit_state, audit_by, audit_start_time, 
+    pass_time, audit_end_time, submit_end_time, user_id, apply_time, product_code, version, 
+    brand_code, active_id, apply_note, standard_id, submit_order_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.apply.model.ApplyFormExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order_apply_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_apply_form
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_apply_form
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.apply.model.ApplyFormExample" >
+    delete from order_apply_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.apply.model.ApplyForm" >
+  <selectKey resultType="java.lang.Long" order="BEFORE"  keyProperty="id">
+       	  SELECT fun_uuid(17) AS id
+     	 </selectKey>
+    insert into order_apply_form (id, slogan, reason, 
+      support_count, apply_state, submit_state, 
+      audit_by, audit_start_time, pass_time, 
+      audit_end_time, submit_end_time, user_id, 
+      apply_time, product_code, version, 
+      brand_code, active_id, apply_note, 
+      standard_id, submit_order_time)
+    values (#{id,jdbcType=BIGINT}, #{slogan,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{supportCount,jdbcType=INTEGER}, #{applyState,jdbcType=INTEGER}, #{submitState,jdbcType=INTEGER}, 
+      #{auditBy,jdbcType=BIGINT}, #{auditStartTime,jdbcType=TIMESTAMP}, #{passTime,jdbcType=TIMESTAMP}, 
+      #{auditEndTime,jdbcType=TIMESTAMP}, #{submitEndTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{productCode,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, 
+      #{brandCode,jdbcType=BIGINT}, #{activeId,jdbcType=BIGINT}, #{applyNote,jdbcType=VARCHAR}, 
+      #{standardId,jdbcType=BIGINT}, #{submitOrderTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.apply.model.ApplyForm" >
+  <selectKey resultType="java.lang.Long" order="BEFORE"  keyProperty="id">
+       	  SELECT fun_uuid(17) AS id
+     	 </selectKey>
+    insert into order_apply_form
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="slogan != null" >
+        slogan,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="supportCount != null" >
+        support_count,
+      </if>
+      <if test="applyState != null" >
+        apply_state,
+      </if>
+      <if test="submitState != null" >
+        submit_state,
+      </if>
+      <if test="auditBy != null" >
+        audit_by,
+      </if>
+      <if test="auditStartTime != null" >
+        audit_start_time,
+      </if>
+      <if test="passTime != null" >
+        pass_time,
+      </if>
+      <if test="auditEndTime != null" >
+        audit_end_time,
+      </if>
+      <if test="submitEndTime != null" >
+        submit_end_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="brandCode != null" >
+        brand_code,
+      </if>
+      <if test="activeId != null" >
+        active_id,
+      </if>
+      <if test="applyNote != null" >
+        apply_note,
+      </if>
+      <if test="standardId != null" >
+        standard_id,
+      </if>
+      <if test="submitOrderTime != null" >
+        submit_order_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="slogan != null" >
+        #{slogan,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCount != null" >
+        #{supportCount,jdbcType=INTEGER},
+      </if>
+      <if test="applyState != null" >
+        #{applyState,jdbcType=INTEGER},
+      </if>
+      <if test="submitState != null" >
+        #{submitState,jdbcType=INTEGER},
+      </if>
+      <if test="auditBy != null" >
+        #{auditBy,jdbcType=BIGINT},
+      </if>
+      <if test="auditStartTime != null" >
+        #{auditStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passTime != null" >
+        #{passTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEndTime != null" >
+        #{auditEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitEndTime != null" >
+        #{submitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null" >
+        #{brandCode,jdbcType=BIGINT},
+      </if>
+      <if test="activeId != null" >
+        #{activeId,jdbcType=BIGINT},
+      </if>
+      <if test="applyNote != null" >
+        #{applyNote,jdbcType=VARCHAR},
+      </if>
+      <if test="standardId != null" >
+        #{standardId,jdbcType=BIGINT},
+      </if>
+      <if test="submitOrderTime != null" >
+        #{submitOrderTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.apply.model.ApplyFormExample" resultType="java.lang.Integer" >
+    select count(*) from order_apply_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_apply_form
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.slogan != null" >
+        slogan = #{record.slogan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supportCount != null" >
+        support_count = #{record.supportCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyState != null" >
+        apply_state = #{record.applyState,jdbcType=INTEGER},
+      </if>
+      <if test="record.submitState != null" >
+        submit_state = #{record.submitState,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditBy != null" >
+        audit_by = #{record.auditBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.auditStartTime != null" >
+        audit_start_time = #{record.auditStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.passTime != null" >
+        pass_time = #{record.passTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditEndTime != null" >
+        audit_end_time = #{record.auditEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.submitEndTime != null" >
+        submit_end_time = #{record.submitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.productCode != null" >
+        product_code = #{record.productCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.brandCode != null" >
+        brand_code = #{record.brandCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.activeId != null" >
+        active_id = #{record.activeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.applyNote != null" >
+        apply_note = #{record.applyNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardId != null" >
+        standard_id = #{record.standardId,jdbcType=BIGINT},
+      </if>
+      <if test="record.submitOrderTime != null" >
+        submit_order_time = #{record.submitOrderTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_apply_form
+    set id = #{record.id,jdbcType=BIGINT},
+      slogan = #{record.slogan,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      support_count = #{record.supportCount,jdbcType=INTEGER},
+      apply_state = #{record.applyState,jdbcType=INTEGER},
+      submit_state = #{record.submitState,jdbcType=INTEGER},
+      audit_by = #{record.auditBy,jdbcType=BIGINT},
+      audit_start_time = #{record.auditStartTime,jdbcType=TIMESTAMP},
+      pass_time = #{record.passTime,jdbcType=TIMESTAMP},
+      audit_end_time = #{record.auditEndTime,jdbcType=TIMESTAMP},
+      submit_end_time = #{record.submitEndTime,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      product_code = #{record.productCode,jdbcType=BIGINT},
+      version = #{record.version,jdbcType=INTEGER},
+      brand_code = #{record.brandCode,jdbcType=BIGINT},
+      active_id = #{record.activeId,jdbcType=BIGINT},
+      apply_note = #{record.applyNote,jdbcType=VARCHAR},
+      standard_id = #{record.standardId,jdbcType=BIGINT},
+      submit_order_time = #{record.submitOrderTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.apply.model.ApplyForm" >
+    update order_apply_form
+    <set >
+      <if test="slogan != null" >
+        slogan = #{slogan,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCount != null" >
+        support_count = #{supportCount,jdbcType=INTEGER},
+      </if>
+      <if test="applyState != null" >
+        apply_state = #{applyState,jdbcType=INTEGER},
+      </if>
+      <if test="submitState != null" >
+        submit_state = #{submitState,jdbcType=INTEGER},
+      </if>
+      <if test="auditBy != null" >
+        audit_by = #{auditBy,jdbcType=BIGINT},
+      </if>
+      <if test="auditStartTime != null" >
+        audit_start_time = #{auditStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passTime != null" >
+        pass_time = #{passTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEndTime != null" >
+        audit_end_time = #{auditEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitEndTime != null" >
+        submit_end_time = #{submitEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="brandCode != null" >
+        brand_code = #{brandCode,jdbcType=BIGINT},
+      </if>
+      <if test="activeId != null" >
+        active_id = #{activeId,jdbcType=BIGINT},
+      </if>
+      <if test="applyNote != null" >
+        apply_note = #{applyNote,jdbcType=VARCHAR},
+      </if>
+      <if test="standardId != null" >
+        standard_id = #{standardId,jdbcType=BIGINT},
+      </if>
+      <if test="submitOrderTime != null" >
+        submit_order_time = #{submitOrderTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.apply.model.ApplyForm" >
+    update order_apply_form
+    set slogan = #{slogan,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      support_count = #{supportCount,jdbcType=INTEGER},
+      apply_state = #{applyState,jdbcType=INTEGER},
+      submit_state = #{submitState,jdbcType=INTEGER},
+      audit_by = #{auditBy,jdbcType=BIGINT},
+      audit_start_time = #{auditStartTime,jdbcType=TIMESTAMP},
+      pass_time = #{passTime,jdbcType=TIMESTAMP},
+      audit_end_time = #{auditEndTime,jdbcType=TIMESTAMP},
+      submit_end_time = #{submitEndTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      product_code = #{productCode,jdbcType=BIGINT},
+      version = #{version,jdbcType=INTEGER},
+      brand_code = #{brandCode,jdbcType=BIGINT},
+      active_id = #{activeId,jdbcType=BIGINT},
+      apply_note = #{applyNote,jdbcType=VARCHAR},
+      standard_id = #{standardId,jdbcType=BIGINT},
+      submit_order_time = #{submitOrderTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   <update id="updateSupportNum" parameterType="java.lang.Long" >
+    update order_apply_form
+    set 
+      support_count = support_count + 1  
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateStateByCrontab" parameterType="com.qianqian.apply.model.ApplyForm">
+		update order_apply_form f set
+		f.apply_state = #{applyState},
+		f.audit_by = #{auditBy},
+		f.pass_time= #{passTime}
+		where f.apply_state = 0
+		and f.product_code = #{productCode}
+		and f.version = #{version}
+		order by f.support_count desc,f.apply_time asc
+		limit #{passNum}
+	</update>
+</mapper>

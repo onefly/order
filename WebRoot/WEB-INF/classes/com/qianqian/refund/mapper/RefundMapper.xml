@@ -1,0 +1,1068 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qianqian.refund.mapper.RefundMapper" >
+  <resultMap id="BaseResultMap" type="com.qianqian.refund.model.Refund" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_child_id" property="orderChildId" jdbcType="BIGINT" />
+    <result column="refund_state" property="refundState" jdbcType="INTEGER" />
+    <result column="refund_create_time" property="refundCreateTime" jdbcType="TIMESTAMP" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="refund_type" property="refundType" jdbcType="INTEGER" />
+    <result column="refund_resson" property="refundResson" jdbcType="VARCHAR" />
+    <result column="refund_description" property="refundDescription" jdbcType="VARCHAR" />
+    <result column="voucher_pic1" property="voucherPic1" jdbcType="VARCHAR" />
+    <result column="voucher_pic2" property="voucherPic2" jdbcType="VARCHAR" />
+    <result column="voucher_pic3" property="voucherPic3" jdbcType="VARCHAR" />
+    <result column="appeal_state" property="appealState" jdbcType="INTEGER" />
+    <result column="oricount" property="oricount" jdbcType="INTEGER" />
+    <result column="prd_id" property="prdId" jdbcType="VARCHAR" />
+    <result column="prd_version" property="prdVersion" jdbcType="INTEGER" />
+    <result column="prd_standard_id" property="prdStandardId" jdbcType="BIGINT" />
+    <result column="prd_standard" property="prdStandard" jdbcType="VARCHAR" />
+    <result column="prd_code" property="prdCode" jdbcType="BIGINT" />
+    <result column="prd_name" property="prdName" jdbcType="VARCHAR" />
+    <result column="prd_brand_id" property="prdBrandId" jdbcType="BIGINT" />
+    <result column="prd_brand_name" property="prdBrandName" jdbcType="VARCHAR" />
+    <result column="prd_pic" property="prdPic" jdbcType="VARCHAR" />
+    <result column="stan_color_name" property="stanColorName" jdbcType="VARCHAR" />
+    <result column="stan_color_code" property="stanColorCode" jdbcType="INTEGER" />
+    <result column="stan_size_name" property="stanSizeName" jdbcType="VARCHAR" />
+    <result column="stan_size_code" property="stanSizeCode" jdbcType="INTEGER" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="buyer_nickname" property="buyerNickname" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="acti_purpose" property="actiPurpose" jdbcType="VARCHAR" />
+    <result column="sys_agree_refund_application_time" property="sysAgreeRefundApplicationTime" jdbcType="TIMESTAMP" />
+    <result column="sys_close_refund_application_intervene_time" property="sysCloseRefundApplicationInterveneTime" jdbcType="TIMESTAMP" />
+    <result column="sys_wanning_refund_application_intervene_time" property="sysWanningRefundApplicationInterveneTime" jdbcType="TIMESTAMP" />
+    <result column="sys_close_refund_application_time" property="sysCloseRefundApplicationTime" jdbcType="TIMESTAMP" />
+    <result column="sys_agree_refund_time" property="sysAgreeRefundTime" jdbcType="TIMESTAMP" />
+    <result column="sys_close_refund_intervene_time" property="sysCloseRefundInterveneTime" jdbcType="TIMESTAMP" />
+    <result column="sys_wanning_refund_intervene_time" property="sysWanningRefundInterveneTime" jdbcType="TIMESTAMP" />
+    <result column="sys_wanning_refund_affirm_time" property="sysWanningRefundAffirmTime" jdbcType="TIMESTAMP" />
+    <result column="sys_close_appeal_time" property="sysCloseAppealTime" jdbcType="TIMESTAMP" />
+    <result column="price_order" property="priceOrder" jdbcType="DECIMAL" />
+    <result column="price_refund" property="priceRefund" jdbcType="DECIMAL" />
+    <result column="addr_province_name" property="addrProvinceName" jdbcType="VARCHAR" />
+    <result column="addr_city_name" property="addrCityName" jdbcType="VARCHAR" />
+    <result column="addr_district_name" property="addrDistrictName" jdbcType="VARCHAR" />
+    <result column="addr_province_id" property="addrProvinceId" jdbcType="INTEGER" />
+    <result column="addr_city_id" property="addrCityId" jdbcType="INTEGER" />
+    <result column="addr_district_id" property="addrDistrictId" jdbcType="INTEGER" />
+    <result column="addr_address" property="addrAddress" jdbcType="VARCHAR" />
+    <result column="addr_full_address" property="addrFullAddress" jdbcType="VARCHAR" />
+    <result column="addr_recieve_name" property="addrRecieveName" jdbcType="VARCHAR" />
+    <result column="addr_zip_code" property="addrZipCode" jdbcType="VARCHAR" />
+    <result column="addr_recieve_mobile" property="addrRecieveMobile" jdbcType="VARCHAR" />
+    <result column="addr_recieve_phone" property="addrRecievePhone" jdbcType="VARCHAR" />
+    <result column="express_numbers" property="expressNumbers" jdbcType="VARCHAR" />
+    <result column="express_company" property="expressCompany" jdbcType="VARCHAR" />
+    <result column="brand_refuse_reason" property="brandRefuseReason" jdbcType="VARCHAR" />
+    <result column="maxtp_refuse_reason" property="maxtpRefuseReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, order_child_id, refund_state, refund_create_time, order_type, refund_type, 
+    refund_resson, refund_description, voucher_pic1, voucher_pic2, voucher_pic3, appeal_state, 
+    oricount, prd_id, prd_version, prd_standard_id, prd_standard, prd_code, prd_name, 
+    prd_brand_id, prd_brand_name, prd_pic, stan_color_name, stan_color_code, stan_size_name, 
+    stan_size_code, buyer_id, buyer_nickname, activity_id, acti_purpose, sys_agree_refund_application_time, 
+    sys_close_refund_application_intervene_time, sys_wanning_refund_application_intervene_time, 
+    sys_close_refund_application_time, sys_agree_refund_time, sys_close_refund_intervene_time, 
+    sys_wanning_refund_intervene_time, sys_wanning_refund_affirm_time, sys_close_appeal_time, 
+    price_order, price_refund, addr_province_name, addr_city_name, addr_district_name, 
+    addr_province_id, addr_city_id, addr_district_id, addr_address, addr_full_address, 
+    addr_recieve_name, addr_zip_code, addr_recieve_mobile, addr_recieve_phone, express_numbers, 
+    express_company, brand_refuse_reason, maxtp_refuse_reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qianqian.refund.model.RefundExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order_refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlDialectSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order_refund
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianqian.refund.model.RefundExample" >
+    delete from order_refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianqian.refund.model.Refund" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select fun_uuid(13)
+    </selectKey>
+    insert into order_refund (id, order_id, order_child_id, 
+      refund_state, refund_create_time, order_type, 
+      refund_type, refund_resson, refund_description, 
+      voucher_pic1, voucher_pic2, voucher_pic3, 
+      appeal_state, oricount, prd_id, 
+      prd_version, prd_standard_id, prd_standard, 
+      prd_code, prd_name, prd_brand_id, 
+      prd_brand_name, prd_pic, stan_color_name, 
+      stan_color_code, stan_size_name, stan_size_code, 
+      buyer_id, buyer_nickname, activity_id, 
+      acti_purpose, sys_agree_refund_application_time, 
+      sys_close_refund_application_intervene_time, sys_wanning_refund_application_intervene_time, 
+      sys_close_refund_application_time, sys_agree_refund_time, 
+      sys_close_refund_intervene_time, sys_wanning_refund_intervene_time, 
+      sys_wanning_refund_affirm_time, sys_close_appeal_time, 
+      price_order, price_refund, addr_province_name, 
+      addr_city_name, addr_district_name, addr_province_id, 
+      addr_city_id, addr_district_id, addr_address, 
+      addr_full_address, addr_recieve_name, addr_zip_code, 
+      addr_recieve_mobile, addr_recieve_phone, express_numbers, 
+      express_company, brand_refuse_reason, maxtp_refuse_reason)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderChildId,jdbcType=BIGINT}, 
+      #{refundState,jdbcType=INTEGER}, #{refundCreateTime,jdbcType=TIMESTAMP}, #{orderType,jdbcType=INTEGER}, 
+      #{refundType,jdbcType=INTEGER}, #{refundResson,jdbcType=VARCHAR}, #{refundDescription,jdbcType=VARCHAR}, 
+      #{voucherPic1,jdbcType=VARCHAR}, #{voucherPic2,jdbcType=VARCHAR}, #{voucherPic3,jdbcType=VARCHAR}, 
+      #{appealState,jdbcType=INTEGER}, #{oricount,jdbcType=INTEGER}, #{prdId,jdbcType=VARCHAR}, 
+      #{prdVersion,jdbcType=INTEGER}, #{prdStandardId,jdbcType=BIGINT}, #{prdStandard,jdbcType=VARCHAR}, 
+      #{prdCode,jdbcType=BIGINT}, #{prdName,jdbcType=VARCHAR}, #{prdBrandId,jdbcType=BIGINT}, 
+      #{prdBrandName,jdbcType=VARCHAR}, #{prdPic,jdbcType=VARCHAR}, #{stanColorName,jdbcType=VARCHAR}, 
+      #{stanColorCode,jdbcType=INTEGER}, #{stanSizeName,jdbcType=VARCHAR}, #{stanSizeCode,jdbcType=INTEGER}, 
+      #{buyerId,jdbcType=BIGINT}, #{buyerNickname,jdbcType=VARCHAR}, #{activityId,jdbcType=BIGINT}, 
+      #{actiPurpose,jdbcType=VARCHAR}, #{sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP}, 
+      #{sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP}, #{sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP}, 
+      #{sysCloseRefundApplicationTime,jdbcType=TIMESTAMP}, #{sysAgreeRefundTime,jdbcType=TIMESTAMP}, 
+      #{sysCloseRefundInterveneTime,jdbcType=TIMESTAMP}, #{sysWanningRefundInterveneTime,jdbcType=TIMESTAMP}, 
+      #{sysWanningRefundAffirmTime,jdbcType=TIMESTAMP}, #{sysCloseAppealTime,jdbcType=TIMESTAMP}, 
+      #{priceOrder,jdbcType=DECIMAL}, #{priceRefund,jdbcType=DECIMAL}, #{addrProvinceName,jdbcType=VARCHAR}, 
+      #{addrCityName,jdbcType=VARCHAR}, #{addrDistrictName,jdbcType=VARCHAR}, #{addrProvinceId,jdbcType=INTEGER}, 
+      #{addrCityId,jdbcType=INTEGER}, #{addrDistrictId,jdbcType=INTEGER}, #{addrAddress,jdbcType=VARCHAR}, 
+      #{addrFullAddress,jdbcType=VARCHAR}, #{addrRecieveName,jdbcType=VARCHAR}, #{addrZipCode,jdbcType=VARCHAR}, 
+      #{addrRecieveMobile,jdbcType=VARCHAR}, #{addrRecievePhone,jdbcType=VARCHAR}, #{expressNumbers,jdbcType=VARCHAR}, 
+      #{expressCompany,jdbcType=VARCHAR}, #{brandRefuseReason,jdbcType=VARCHAR}, #{maxtpRefuseReason,jdbcType=VARCHAR}, 
+      #{sysCreateRefundTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianqian.refund.model.Refund" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      select fun_uuid(13)
+    </selectKey>
+    insert into order_refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderChildId != null" >
+        order_child_id,
+      </if>
+      <if test="refundState != null" >
+        refund_state,
+      </if>
+      <if test="refundCreateTime != null" >
+        refund_create_time,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="refundType != null" >
+        refund_type,
+      </if>
+      <if test="refundResson != null" >
+        refund_resson,
+      </if>
+      <if test="refundDescription != null" >
+        refund_description,
+      </if>
+      <if test="voucherPic1 != null" >
+        voucher_pic1,
+      </if>
+      <if test="voucherPic2 != null" >
+        voucher_pic2,
+      </if>
+      <if test="voucherPic3 != null" >
+        voucher_pic3,
+      </if>
+      <if test="appealState != null" >
+        appeal_state,
+      </if>
+      <if test="oricount != null" >
+        oricount,
+      </if>
+      <if test="prdId != null" >
+        prd_id,
+      </if>
+      <if test="prdVersion != null" >
+        prd_version,
+      </if>
+      <if test="prdStandardId != null" >
+        prd_standard_id,
+      </if>
+      <if test="prdStandard != null" >
+        prd_standard,
+      </if>
+      <if test="prdCode != null" >
+        prd_code,
+      </if>
+      <if test="prdName != null" >
+        prd_name,
+      </if>
+      <if test="prdBrandId != null" >
+        prd_brand_id,
+      </if>
+      <if test="prdBrandName != null" >
+        prd_brand_name,
+      </if>
+      <if test="prdPic != null" >
+        prd_pic,
+      </if>
+      <if test="stanColorName != null" >
+        stan_color_name,
+      </if>
+      <if test="stanColorCode != null" >
+        stan_color_code,
+      </if>
+      <if test="stanSizeName != null" >
+        stan_size_name,
+      </if>
+      <if test="stanSizeCode != null" >
+        stan_size_code,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="actiPurpose != null" >
+        acti_purpose,
+      </if>
+      <if test="sysAgreeRefundApplicationTime != null" >
+        sys_agree_refund_application_time,
+      </if>
+      <if test="sysCloseRefundApplicationInterveneTime != null" >
+        sys_close_refund_application_intervene_time,
+      </if>
+      <if test="sysWanningRefundApplicationInterveneTime != null" >
+        sys_wanning_refund_application_intervene_time,
+      </if>
+      <if test="sysCloseRefundApplicationTime != null" >
+        sys_close_refund_application_time,
+      </if>
+      <if test="sysAgreeRefundTime != null" >
+        sys_agree_refund_time,
+      </if>
+      <if test="sysCloseRefundInterveneTime != null" >
+        sys_close_refund_intervene_time,
+      </if>
+      <if test="sysWanningRefundInterveneTime != null" >
+        sys_wanning_refund_intervene_time,
+      </if>
+      <if test="sysWanningRefundAffirmTime != null" >
+        sys_wanning_refund_affirm_time,
+      </if>
+      <if test="sysCloseAppealTime != null" >
+        sys_close_appeal_time,
+      </if>
+      <if test="priceOrder != null" >
+        price_order,
+      </if>
+      <if test="priceRefund != null" >
+        price_refund,
+      </if>
+      <if test="addrProvinceName != null" >
+        addr_province_name,
+      </if>
+      <if test="addrCityName != null" >
+        addr_city_name,
+      </if>
+      <if test="addrDistrictName != null" >
+        addr_district_name,
+      </if>
+      <if test="addrProvinceId != null" >
+        addr_province_id,
+      </if>
+      <if test="addrCityId != null" >
+        addr_city_id,
+      </if>
+      <if test="addrDistrictId != null" >
+        addr_district_id,
+      </if>
+      <if test="addrAddress != null" >
+        addr_address,
+      </if>
+      <if test="addrFullAddress != null" >
+        addr_full_address,
+      </if>
+      <if test="addrRecieveName != null" >
+        addr_recieve_name,
+      </if>
+      <if test="addrZipCode != null" >
+        addr_zip_code,
+      </if>
+      <if test="addrRecieveMobile != null" >
+        addr_recieve_mobile,
+      </if>
+      <if test="addrRecievePhone != null" >
+        addr_recieve_phone,
+      </if>
+      <if test="expressNumbers != null" >
+        express_numbers,
+      </if>
+      <if test="expressCompany != null" >
+        express_company,
+      </if>
+      <if test="brandRefuseReason != null" >
+        brand_refuse_reason,
+      </if>
+      <if test="maxtpRefuseReason != null" >
+        maxtp_refuse_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderChildId != null" >
+        #{orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="refundState != null" >
+        #{refundState,jdbcType=INTEGER},
+      </if>
+      <if test="refundCreateTime != null" >
+        #{refundCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="refundType != null" >
+        #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="refundResson != null" >
+        #{refundResson,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDescription != null" >
+        #{refundDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic1 != null" >
+        #{voucherPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic2 != null" >
+        #{voucherPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic3 != null" >
+        #{voucherPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="appealState != null" >
+        #{appealState,jdbcType=INTEGER},
+      </if>
+      <if test="oricount != null" >
+        #{oricount,jdbcType=INTEGER},
+      </if>
+      <if test="prdId != null" >
+        #{prdId,jdbcType=VARCHAR},
+      </if>
+      <if test="prdVersion != null" >
+        #{prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="prdStandardId != null" >
+        #{prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="prdStandard != null" >
+        #{prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="prdCode != null" >
+        #{prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="prdName != null" >
+        #{prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdBrandId != null" >
+        #{prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="prdBrandName != null" >
+        #{prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdPic != null" >
+        #{prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorName != null" >
+        #{stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorCode != null" >
+        #{stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="stanSizeName != null" >
+        #{stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanSizeCode != null" >
+        #{stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="actiPurpose != null" >
+        #{actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAgreeRefundApplicationTime != null" >
+        #{sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundApplicationInterveneTime != null" >
+        #{sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundApplicationInterveneTime != null" >
+        #{sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundApplicationTime != null" >
+        #{sysCloseRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysAgreeRefundTime != null" >
+        #{sysAgreeRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundInterveneTime != null" >
+        #{sysCloseRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundInterveneTime != null" >
+        #{sysWanningRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundAffirmTime != null" >
+        #{sysWanningRefundAffirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseAppealTime != null" >
+        #{sysCloseAppealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceOrder != null" >
+        #{priceOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="priceRefund != null" >
+        #{priceRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="addrProvinceName != null" >
+        #{addrProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCityName != null" >
+        #{addrCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrDistrictName != null" >
+        #{addrDistrictName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrProvinceId != null" >
+        #{addrProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="addrCityId != null" >
+        #{addrCityId,jdbcType=INTEGER},
+      </if>
+      <if test="addrDistrictId != null" >
+        #{addrDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="addrAddress != null" >
+        #{addrAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrFullAddress != null" >
+        #{addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveName != null" >
+        #{addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrZipCode != null" >
+        #{addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveMobile != null" >
+        #{addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecievePhone != null" >
+        #{addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumbers != null" >
+        #{expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="brandRefuseReason != null" >
+        #{brandRefuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="maxtpRefuseReason != null" >
+        #{maxtpRefuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCreateRefundTime != null" >
+        #{sysCreateRefundTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianqian.refund.model.RefundExample" resultType="java.lang.Integer" >
+    select count(*) from order_refund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_refund
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderChildId != null" >
+        order_child_id = #{record.orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="record.refundState != null" >
+        refund_state = #{record.refundState,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundCreateTime != null" >
+        refund_create_time = #{record.refundCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundType != null" >
+        refund_type = #{record.refundType,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundResson != null" >
+        refund_resson = #{record.refundResson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundDescription != null" >
+        refund_description = #{record.refundDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherPic1 != null" >
+        voucher_pic1 = #{record.voucherPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherPic2 != null" >
+        voucher_pic2 = #{record.voucherPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherPic3 != null" >
+        voucher_pic3 = #{record.voucherPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealState != null" >
+        appeal_state = #{record.appealState,jdbcType=INTEGER},
+      </if>
+      <if test="record.oricount != null" >
+        oricount = #{record.oricount,jdbcType=INTEGER},
+      </if>
+      <if test="record.prdId != null" >
+        prd_id = #{record.prdId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdVersion != null" >
+        prd_version = #{record.prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.prdStandardId != null" >
+        prd_standard_id = #{record.prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdStandard != null" >
+        prd_standard = #{record.prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdCode != null" >
+        prd_code = #{record.prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdName != null" >
+        prd_name = #{record.prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdBrandId != null" >
+        prd_brand_id = #{record.prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prdBrandName != null" >
+        prd_brand_name = #{record.prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prdPic != null" >
+        prd_pic = #{record.prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stanColorName != null" >
+        stan_color_name = #{record.stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stanColorCode != null" >
+        stan_color_code = #{record.stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.stanSizeName != null" >
+        stan_size_name = #{record.stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stanSizeCode != null" >
+        stan_size_code = #{record.stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerNickname != null" >
+        buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.actiPurpose != null" >
+        acti_purpose = #{record.actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysAgreeRefundApplicationTime != null" >
+        sys_agree_refund_application_time = #{record.sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCloseRefundApplicationInterveneTime != null" >
+        sys_close_refund_application_intervene_time = #{record.sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysWanningRefundApplicationInterveneTime != null" >
+        sys_wanning_refund_application_intervene_time = #{record.sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCloseRefundApplicationTime != null" >
+        sys_close_refund_application_time = #{record.sysCloseRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysAgreeRefundTime != null" >
+        sys_agree_refund_time = #{record.sysAgreeRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCloseRefundInterveneTime != null" >
+        sys_close_refund_intervene_time = #{record.sysCloseRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysWanningRefundInterveneTime != null" >
+        sys_wanning_refund_intervene_time = #{record.sysWanningRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysWanningRefundAffirmTime != null" >
+        sys_wanning_refund_affirm_time = #{record.sysWanningRefundAffirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCloseAppealTime != null" >
+        sys_close_appeal_time = #{record.sysCloseAppealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.priceOrder != null" >
+        price_order = #{record.priceOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.priceRefund != null" >
+        price_refund = #{record.priceRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addrProvinceName != null" >
+        addr_province_name = #{record.addrProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrCityName != null" >
+        addr_city_name = #{record.addrCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrDistrictName != null" >
+        addr_district_name = #{record.addrDistrictName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrProvinceId != null" >
+        addr_province_id = #{record.addrProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addrCityId != null" >
+        addr_city_id = #{record.addrCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addrDistrictId != null" >
+        addr_district_id = #{record.addrDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addrAddress != null" >
+        addr_address = #{record.addrAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrFullAddress != null" >
+        addr_full_address = #{record.addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecieveName != null" >
+        addr_recieve_name = #{record.addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrZipCode != null" >
+        addr_zip_code = #{record.addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecieveMobile != null" >
+        addr_recieve_mobile = #{record.addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addrRecievePhone != null" >
+        addr_recieve_phone = #{record.addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNumbers != null" >
+        express_numbers = #{record.expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressCompany != null" >
+        express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandRefuseReason != null" >
+        brand_refuse_reason = #{record.brandRefuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxtpRefuseReason != null" >
+        maxtp_refuse_reason = #{record.maxtpRefuseReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_refund
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      order_child_id = #{record.orderChildId,jdbcType=BIGINT},
+      refund_state = #{record.refundState,jdbcType=INTEGER},
+      refund_create_time = #{record.refundCreateTime,jdbcType=TIMESTAMP},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      refund_type = #{record.refundType,jdbcType=INTEGER},
+      refund_resson = #{record.refundResson,jdbcType=VARCHAR},
+      refund_description = #{record.refundDescription,jdbcType=VARCHAR},
+      voucher_pic1 = #{record.voucherPic1,jdbcType=VARCHAR},
+      voucher_pic2 = #{record.voucherPic2,jdbcType=VARCHAR},
+      voucher_pic3 = #{record.voucherPic3,jdbcType=VARCHAR},
+      appeal_state = #{record.appealState,jdbcType=INTEGER},
+      oricount = #{record.oricount,jdbcType=INTEGER},
+      prd_id = #{record.prdId,jdbcType=VARCHAR},
+      prd_version = #{record.prdVersion,jdbcType=INTEGER},
+      prd_standard_id = #{record.prdStandardId,jdbcType=BIGINT},
+      prd_standard = #{record.prdStandard,jdbcType=VARCHAR},
+      prd_code = #{record.prdCode,jdbcType=BIGINT},
+      prd_name = #{record.prdName,jdbcType=VARCHAR},
+      prd_brand_id = #{record.prdBrandId,jdbcType=BIGINT},
+      prd_brand_name = #{record.prdBrandName,jdbcType=VARCHAR},
+      prd_pic = #{record.prdPic,jdbcType=VARCHAR},
+      stan_color_name = #{record.stanColorName,jdbcType=VARCHAR},
+      stan_color_code = #{record.stanColorCode,jdbcType=INTEGER},
+      stan_size_name = #{record.stanSizeName,jdbcType=VARCHAR},
+      stan_size_code = #{record.stanSizeCode,jdbcType=INTEGER},
+      buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=BIGINT},
+      acti_purpose = #{record.actiPurpose,jdbcType=VARCHAR},
+      sys_agree_refund_application_time = #{record.sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP},
+      sys_close_refund_application_intervene_time = #{record.sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_application_intervene_time = #{record.sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      sys_close_refund_application_time = #{record.sysCloseRefundApplicationTime,jdbcType=TIMESTAMP},
+      sys_agree_refund_time = #{record.sysAgreeRefundTime,jdbcType=TIMESTAMP},
+      sys_close_refund_intervene_time = #{record.sysCloseRefundInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_intervene_time = #{record.sysWanningRefundInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_affirm_time = #{record.sysWanningRefundAffirmTime,jdbcType=TIMESTAMP},
+      sys_close_appeal_time = #{record.sysCloseAppealTime,jdbcType=TIMESTAMP},
+      price_order = #{record.priceOrder,jdbcType=DECIMAL},
+      price_refund = #{record.priceRefund,jdbcType=DECIMAL},
+      addr_province_name = #{record.addrProvinceName,jdbcType=VARCHAR},
+      addr_city_name = #{record.addrCityName,jdbcType=VARCHAR},
+      addr_district_name = #{record.addrDistrictName,jdbcType=VARCHAR},
+      addr_province_id = #{record.addrProvinceId,jdbcType=INTEGER},
+      addr_city_id = #{record.addrCityId,jdbcType=INTEGER},
+      addr_district_id = #{record.addrDistrictId,jdbcType=INTEGER},
+      addr_address = #{record.addrAddress,jdbcType=VARCHAR},
+      addr_full_address = #{record.addrFullAddress,jdbcType=VARCHAR},
+      addr_recieve_name = #{record.addrRecieveName,jdbcType=VARCHAR},
+      addr_zip_code = #{record.addrZipCode,jdbcType=VARCHAR},
+      addr_recieve_mobile = #{record.addrRecieveMobile,jdbcType=VARCHAR},
+      addr_recieve_phone = #{record.addrRecievePhone,jdbcType=VARCHAR},
+      express_numbers = #{record.expressNumbers,jdbcType=VARCHAR},
+      express_company = #{record.expressCompany,jdbcType=VARCHAR},
+      brand_refuse_reason = #{record.brandRefuseReason,jdbcType=VARCHAR},
+      maxtp_refuse_reason = #{record.maxtpRefuseReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianqian.refund.model.Refund" >
+    update order_refund
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderChildId != null" >
+        order_child_id = #{orderChildId,jdbcType=BIGINT},
+      </if>
+      <if test="refundState != null" >
+        refund_state = #{refundState,jdbcType=INTEGER},
+      </if>
+      <if test="refundCreateTime != null" >
+        refund_create_time = #{refundCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="refundType != null" >
+        refund_type = #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="refundResson != null" >
+        refund_resson = #{refundResson,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDescription != null" >
+        refund_description = #{refundDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic1 != null" >
+        voucher_pic1 = #{voucherPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic2 != null" >
+        voucher_pic2 = #{voucherPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherPic3 != null" >
+        voucher_pic3 = #{voucherPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="appealState != null" >
+        appeal_state = #{appealState,jdbcType=INTEGER},
+      </if>
+      <if test="oricount != null" >
+        oricount = #{oricount,jdbcType=INTEGER},
+      </if>
+      <if test="prdId != null" >
+        prd_id = #{prdId,jdbcType=VARCHAR},
+      </if>
+      <if test="prdVersion != null" >
+        prd_version = #{prdVersion,jdbcType=INTEGER},
+      </if>
+      <if test="prdStandardId != null" >
+        prd_standard_id = #{prdStandardId,jdbcType=BIGINT},
+      </if>
+      <if test="prdStandard != null" >
+        prd_standard = #{prdStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="prdCode != null" >
+        prd_code = #{prdCode,jdbcType=BIGINT},
+      </if>
+      <if test="prdName != null" >
+        prd_name = #{prdName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdBrandId != null" >
+        prd_brand_id = #{prdBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="prdBrandName != null" >
+        prd_brand_name = #{prdBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="prdPic != null" >
+        prd_pic = #{prdPic,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorName != null" >
+        stan_color_name = #{stanColorName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanColorCode != null" >
+        stan_color_code = #{stanColorCode,jdbcType=INTEGER},
+      </if>
+      <if test="stanSizeName != null" >
+        stan_size_name = #{stanSizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="stanSizeCode != null" >
+        stan_size_code = #{stanSizeCode,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="actiPurpose != null" >
+        acti_purpose = #{actiPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="sysAgreeRefundApplicationTime != null" >
+        sys_agree_refund_application_time = #{sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundApplicationInterveneTime != null" >
+        sys_close_refund_application_intervene_time = #{sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundApplicationInterveneTime != null" >
+        sys_wanning_refund_application_intervene_time = #{sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundApplicationTime != null" >
+        sys_close_refund_application_time = #{sysCloseRefundApplicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysAgreeRefundTime != null" >
+        sys_agree_refund_time = #{sysAgreeRefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseRefundInterveneTime != null" >
+        sys_close_refund_intervene_time = #{sysCloseRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundInterveneTime != null" >
+        sys_wanning_refund_intervene_time = #{sysWanningRefundInterveneTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysWanningRefundAffirmTime != null" >
+        sys_wanning_refund_affirm_time = #{sysWanningRefundAffirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCloseAppealTime != null" >
+        sys_close_appeal_time = #{sysCloseAppealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priceOrder != null" >
+        price_order = #{priceOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="priceRefund != null" >
+        price_refund = #{priceRefund,jdbcType=DECIMAL},
+      </if>
+      <if test="addrProvinceName != null" >
+        addr_province_name = #{addrProvinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCityName != null" >
+        addr_city_name = #{addrCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrDistrictName != null" >
+        addr_district_name = #{addrDistrictName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrProvinceId != null" >
+        addr_province_id = #{addrProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="addrCityId != null" >
+        addr_city_id = #{addrCityId,jdbcType=INTEGER},
+      </if>
+      <if test="addrDistrictId != null" >
+        addr_district_id = #{addrDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="addrAddress != null" >
+        addr_address = #{addrAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrFullAddress != null" >
+        addr_full_address = #{addrFullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveName != null" >
+        addr_recieve_name = #{addrRecieveName,jdbcType=VARCHAR},
+      </if>
+      <if test="addrZipCode != null" >
+        addr_zip_code = #{addrZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecieveMobile != null" >
+        addr_recieve_mobile = #{addrRecieveMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="addrRecievePhone != null" >
+        addr_recieve_phone = #{addrRecievePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumbers != null" >
+        express_numbers = #{expressNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="expressCompany != null" >
+        express_company = #{expressCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="brandRefuseReason != null" >
+        brand_refuse_reason = #{brandRefuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="maxtpRefuseReason != null" >
+        maxtp_refuse_reason = #{maxtpRefuseReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianqian.refund.model.Refund" >
+    update order_refund
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_child_id = #{orderChildId,jdbcType=BIGINT},
+      refund_state = #{refundState,jdbcType=INTEGER},
+      refund_create_time = #{refundCreateTime,jdbcType=TIMESTAMP},
+      order_type = #{orderType,jdbcType=INTEGER},
+      refund_type = #{refundType,jdbcType=INTEGER},
+      refund_resson = #{refundResson,jdbcType=VARCHAR},
+      refund_description = #{refundDescription,jdbcType=VARCHAR},
+      voucher_pic1 = #{voucherPic1,jdbcType=VARCHAR},
+      voucher_pic2 = #{voucherPic2,jdbcType=VARCHAR},
+      voucher_pic3 = #{voucherPic3,jdbcType=VARCHAR},
+      appeal_state = #{appealState,jdbcType=INTEGER},
+      oricount = #{oricount,jdbcType=INTEGER},
+      prd_id = #{prdId,jdbcType=VARCHAR},
+      prd_version = #{prdVersion,jdbcType=INTEGER},
+      prd_standard_id = #{prdStandardId,jdbcType=BIGINT},
+      prd_standard = #{prdStandard,jdbcType=VARCHAR},
+      prd_code = #{prdCode,jdbcType=BIGINT},
+      prd_name = #{prdName,jdbcType=VARCHAR},
+      prd_brand_id = #{prdBrandId,jdbcType=BIGINT},
+      prd_brand_name = #{prdBrandName,jdbcType=VARCHAR},
+      prd_pic = #{prdPic,jdbcType=VARCHAR},
+      stan_color_name = #{stanColorName,jdbcType=VARCHAR},
+      stan_color_code = #{stanColorCode,jdbcType=INTEGER},
+      stan_size_name = #{stanSizeName,jdbcType=VARCHAR},
+      stan_size_code = #{stanSizeCode,jdbcType=INTEGER},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      acti_purpose = #{actiPurpose,jdbcType=VARCHAR},
+      sys_agree_refund_application_time = #{sysAgreeRefundApplicationTime,jdbcType=TIMESTAMP},
+      sys_close_refund_application_intervene_time = #{sysCloseRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_application_intervene_time = #{sysWanningRefundApplicationInterveneTime,jdbcType=TIMESTAMP},
+      sys_close_refund_application_time = #{sysCloseRefundApplicationTime,jdbcType=TIMESTAMP},
+      sys_agree_refund_time = #{sysAgreeRefundTime,jdbcType=TIMESTAMP},
+      sys_close_refund_intervene_time = #{sysCloseRefundInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_intervene_time = #{sysWanningRefundInterveneTime,jdbcType=TIMESTAMP},
+      sys_wanning_refund_affirm_time = #{sysWanningRefundAffirmTime,jdbcType=TIMESTAMP},
+      sys_close_appeal_time = #{sysCloseAppealTime,jdbcType=TIMESTAMP},
+      price_order = #{priceOrder,jdbcType=DECIMAL},
+      price_refund = #{priceRefund,jdbcType=DECIMAL},
+      addr_province_name = #{addrProvinceName,jdbcType=VARCHAR},
+      addr_city_name = #{addrCityName,jdbcType=VARCHAR},
+      addr_district_name = #{addrDistrictName,jdbcType=VARCHAR},
+      addr_province_id = #{addrProvinceId,jdbcType=INTEGER},
+      addr_city_id = #{addrCityId,jdbcType=INTEGER},
+      addr_district_id = #{addrDistrictId,jdbcType=INTEGER},
+      addr_address = #{addrAddress,jdbcType=VARCHAR},
+      addr_full_address = #{addrFullAddress,jdbcType=VARCHAR},
+      addr_recieve_name = #{addrRecieveName,jdbcType=VARCHAR},
+      addr_zip_code = #{addrZipCode,jdbcType=VARCHAR},
+      addr_recieve_mobile = #{addrRecieveMobile,jdbcType=VARCHAR},
+      addr_recieve_phone = #{addrRecievePhone,jdbcType=VARCHAR},
+      express_numbers = #{expressNumbers,jdbcType=VARCHAR},
+      express_company = #{expressCompany,jdbcType=VARCHAR},
+      brand_refuse_reason = #{brandRefuseReason,jdbcType=VARCHAR},
+      maxtp_refuse_reason = #{maxtpRefuseReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="MysqlDialectSuffix" >
+    <if test="page != null" >
+      <![CDATA[  limit #{page.begin} , #{page.end} ]]>
+    </if>
+  </sql>
+</mapper>

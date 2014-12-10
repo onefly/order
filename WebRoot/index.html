@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>宝贝详情页</title>
+<link href="style/public.css" rel="stylesheet" type="text/css" />
+<link href="style/baby_details.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-yeqian.js" type="text/javascript"></script>
+
+<!--放大镜效果-->
+<script type="text/javascript" src="js/mz-packed.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/miniTip.js"></script>
+<script type="text/javascript" src="js/fdj.js"></script>
+<script src="js/230banner.js"></script><!--230轮播焦点图--
+
+<!--请选择弹出层-->
+<!--script type="text/javascript" src="js/popup_layer.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	//示例1，默认弹出层
+	new PopupLayer({
+		trigger:"#ele1",
+		popupBlk:"#blk1",
+		closeBtn:"#close1"
+	});
+	
+	
+	t9.doEffects = function(way){
+		if(way == "open"){
+			this.popupLayer.css({opacity:0.3}).show(300,function(){
+				this.popupLayer.animate({
+					left:($(document).width() - this.popupLayer.width())/2,
+					top:(document.documentElement.clientHeight - this.popupLayer.height())/2 + $(document).scrollTop(),
+					opacity:0.8
+				},300,function(){this.popupLayer.css("opacity",1)}.binding(this));
+			}.binding(this));
+		}
+		else{
+			this.popupLayer.animate({
+				left:this.trigger.offset().left,
+				top:this.trigger.offset().top,
+				opacity:0.1
+			},{duration:200,complete:function(){this.popupLayer.css("opacity",1);this.popupLayer.hide()}.binding(this)});
+		}
+	}
+	
+	
+});
+</script-->
+
+</head>
+<body>
+<!--页面主体begin -->
+<div class="baby_details_wrap">
+  <p class="b_d_crumbs">首页 >><a href="#"> 裸价体验</a> - <a href="#"> 美容美妆</a> - <a href="#"> 香奈儿</a>-<a href="#" class="text_green"> 香奈儿CHANEL N°  5花样淡香水</a> </p>
+  <div class="area_a">
+    <div class="itemPic tabs">
+     <div class="selImg"></div> 
+      <div class="itemPicM">
+        <div class="tabcon" style="display:block;"><a href="http://style.kela.cn/images/styles/201304/1365477519585555493.jpg" class="MagicZoom"><img src="images/imga01.jpg" width="300" height="300"></a></div>
+        <div class="tabcon" style="display:none;"><a href="http://style.kela.cn/images/styles/201304/1365477519585555493.jpg" class="MagicZoom"><img src="images/imga01.jpg" width="300" height="300"></a></div>
+        <div class="tabcon" style="display:none;"><a href="http://style.kela.cn/images/styles/201304/1365477519585555493.jpg" class="MagicZoom"><img src="images/imga01.jpg" width="300" height="300"></a></div>
+        <div class="tabcon" style="display:none;"><a href="http://style.kela.cn/images/styles/201304/1365477519585555493.jpg" class="MagicZoom"><img src="images/imga01.jpg" width="300" height="300"></a></div>
+        <div class="tabcon" style="display:none;"><a href="http://style.kela.cn/images/styles/201304/1365477519585555493.jpg" class="MagicZoom"><img src="images/imga01.jpg" width="300" height="300"></a></div>
+      </div>
+      <div class="itemPicSBox">
+        <ul class="itemPicS fix tabnav">
+          <li class="un"><img src="images/imga01.jpg" width="50" height="50"></li>
+          <li><img src="images/imga01.jpg" width="50" height="50"></li>
+          <li><img src="images/imga01.jpg" width="50" height="50"></li>
+          <li><img src="images/imga01.jpg" width="50" height="50"></li>
+          <li><img src="images/imga01.jpg" width="50" height="50"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="shangpin_text_wrap">
+      <h3><span class="lt_sqs"><img style="display:none" id="sqs" src="images/book.jpg" width="260" height="360"></span>Chanel香奈儿邂逅</h3>
+      <h4>清新淡香水香奈儿邂逅清新淡香水水</h4>
+      <div class="line mb15"></div>
+      <div class="left w340"> <span class="mr30">市场价：￥638.00</span> <span>折扣：2折</span> <span class="w323">规格：60ml</span>
+        <div class="xuanze_1 hide"> <span >颜色和尺码：</span> <a class="but_gray" href="javascrip:;">请选择</a> </div>
+        <div class="w323 left"> <span id="Lh">颜色和尺码：</span>
+          <div id="emample1" class="example"> <em class="img_sure"></em><span class="size_sure"></span>
+            <div id="ele1" class="tigger but_xuanze">请选择</div>
+          </div>
+        </div>
+        <span class="w160">剩余体验：<em class="text_green bold">1234人</em></span> <span>开放体验：<em class="text_green bold">12345人</em></span> <span class="w323">累计裸价体验：<em class="text_green bold">12345人</em></span> <span class="w323">
+        <p>距离体验开始</p>
+        <em class="bold font18 ml5"> 4 天 30 时 54 分 10 秒</em></span> <span class="w323" style="display:none;">
+        <p>距离体验结束</p>
+        <em class="bold font18 ml5"> 4 天 30 时 54 分 10 秒</em></span> <span class="w323 yellow" style="display:none;">本次体验活动已结束，期待下一次</span>
+        <div class="line mt10 mb10"></div>
+        <div class="tyj"> <span class="font20 text_orange ml5">体验价:￥</span> <span class="font28 text_orange">38.00</span> <span class="font14 mt3">［每人限体验一次］</span> </div>
+      </div>
+      <a class="but_car"></a> <a class="but_ty"></a> </div>
+    <div class="mude_wrap">
+      <h3></h3>
+      <p class="mt15">世间上最畅销的润肤露，享受肌肤大家都放假，收技法所法萨芬。</p>
+      <h4></h4>
+      <p class="mt15"> 性别要求：女</br>
+        年龄要求：18-25岁</br>
+        体验等级：LV1-LV3</br>
+        会员类别：VIP会员</br>
+        本品牌勋章：2个以上 </p>
+      <p class="mt20">地区要求：大陆地区</br>
+        不参加省份：<span>黑龙江</span> <span>哈尔滨</span> <span>内蒙古</span> </p>
+    </div>
+    <div class="share_wrap"> <span class="left">分享到</span> <a href="#" class="but_qzone ml5"></a> <a href="#" class="but_sina"></a> <a href="#" class="but_qq"></a> <a href="#" class="but_weixin"></a> <a href="#" class="but_ren"></a> <a href="#" class="but_dou"></a> <a href="javascript:;" class="left mt3 _dy">商品订阅</a> <a href="javascript:;" class="but_soucang"></a> <a href="#" class="but_lianxi"></a> </div>
+  </div>
+  <div class="area_b">
+    <div class="area_c">
+      <div class="video"><img src="images/video_bg.jpg"></div>
+      <div class="liucheng_lj"></div>
+      <div class="tiyan_wrap">
+        <h3 class="tiyan_title">美试体验指数</h3>
+        <div class="tiyan">
+          <div class="cpxhd">
+            <h3>产品喜好度</h3>
+            <div class="cpxhd_del"> <span class="left">好</span>
+              <div class="cpxhd_du color_1"></div>
+              <p>100%</p>
+            </div>
+            <div class="cpxhd_del"> <span class="left">一般</span>
+              <div class="cpxhd_du color_2"></div>
+              <p >40%</p>
+            </div>
+            <div class="cpxhd_del"> <span class="left">不好</span>
+              <div class="cpxhd_du color_3"></div>
+              <p>30%</p>
+            </div>
+            <p class="time">产品上线时间：2014/3/28</p>
+            <p class="time">累计裸价体验：<span class="text_green">123456人</span></p>
+          </div>
+          <div class="ppphd">
+            <h3>产品喜好度</h3>
+            <div class="ppphd_del"> <span class="left">喜欢</span>
+              <div class="ppphd_du color_4"></div>
+              <p>100%</p>
+            </div>
+            <div class="ppphd_del"> <span class="left">没感觉</span>
+              <div class="ppphd_du color_5"></div>
+              <p >40%</p>
+            </div>
+            <div class="ppphd_del"> <span class="left">不喜欢</span>
+              <div class="ppphd_du color_6"></div>
+              <p>30%</p>
+            </div>
+            <p class="time">品牌入驻时间：2014/3/28</p>
+            <p class="time">累计体验：<span class="text_green">123456人</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="baby_cs_wrap">
+        <h3 class="baby_cs_title">宝贝参数</h3>
+        <div class="baby_cs">
+          <p> <span class="w220">品牌名称：Chanel香奈儿邂逅</span> <span class="w350">产品名称：清新淡香水香奈儿邂逅清新淡香水水 </span> <span class="w120">规格：60ml/瓶</span> <span class="w120">产地：法国</span> <span>商家联系电话：+42 86 28 00</span> <span class="w350">生产厂址：31 Rue Cambon, Paris, 75001, France</span> <span></span> <span></span> </p>
+          <div class="line left mb15"></div>
+          <p>特别说明：</br>
+            CHANCE邂逅香水 以清新花香为主调，动态香味层融合风信子、白麝香、粉红胡椒、茉莉、香根草、柑橘果、鸢尾和琥珀广藿香，散发甜美的感觉之余，也带有感性及热情的气息，甜美与辛辣交织的嗅觉体验，充分表现时代女性朝气勃勃及勇敢果断的一面.象征着现代女性的无比魅力</p>
+        </div>
+      </div>
+      <div class="baby_tab_wrap">
+        <div id="Tab1">
+          <div class="Menubox baby_tab_wrap">
+            <ul class="baby_tab">
+              <li id="one1" onclick="setTab('one',1,4)"  class="hover">宝贝详情</li>
+              <li id="one2" onclick="setTab('one',2,4)" >体验记录</li>
+              <li id="one3" onclick="setTab('one',3,4)">体验评价</li>
+              <li id="one4" onclick="setTab('one',4,4)">体验报告</li>
+            </ul>
+          </div>
+          <div class="Contentbox baby_tab_cont">
+            <div id="con_one_1" class="hover">
+              <div class="bb_xiangqing"> <img src="images/linshi_1.jpg">
+                <h3>文字标题</h3>
+                <p>撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿。撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿</p>
+                <img src="images/linshi_2.jpg">
+                <h3>文字标题</h3>
+                <p>四谛法加快速度见风使舵 ，发送到减肥 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿。撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿撒旦发了收到辅导老师 ，都是垃圾发送到了烦死了都发牢骚的发了。看京东方拉屎的见风使舵发烧，市里的见风使舵。sd卡垃圾分类sd卡减肥的，文痞人气颇为二位伟，哦我威尔额外认为人味儿</p>
+              </div>
+            </div>
+            <div id="con_one_2" style="display:none">
+              <table border="0" class="table_ty_jilu">
+                <tr>
+                  <th width="210">用户名称</th>
+                  <th width="125">会员类别</th>
+                  <th width="80">等级</th>
+                  <th wdith="128">体验价</th>
+                  <th wdith="156">付款时间</th>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg" width="50" height="50"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg"> <a href="#">我就是我我就是我我就</a></td>
+                  <td>VIP会员</td>
+                  <td>LV1</td>
+                  <td>￥38.00</td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                </tr>
+              </table>
+            </div>
+            <div id="con_one_3" style="display:none">
+              <table class="table_ty_pingjia">
+                <tr>
+                  <th wdith="250">用户名称</th>
+                  <th width="450">体验评价</th>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg" width="75" height="75"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><div class="pingjia_list">
+                      <div class="pingjia_title"> <span class="w340">订单编号：1234567890 </span> <span>评价时间：2014/3/27  16:03:09</span> </div>
+                      <dl class="pingjia_cont">
+                        <dt> <img src="images/linshi_10.jpg"> <a>这里最多十个字十个字</a>
+                          <p>体验等级：lv1</p>
+                        </dt>
+                        <dd>
+                          <p> <span>我对该产品的评价：<em class="orange_area">一般</em ></span> <span>我对该品牌的评价：<em class="green_area">没感觉</em ></span> </p>
+                          <p>我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就,我就是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就.......
+                            是我我就是我我就我就是我我就是我我就我就是我我就是我我就我就是我
+                            我就是我我就我就是我我就是我我就我就是我我就是我我就我
+                            就是我我就</p>
+                          <p><span class="text_orange">追评：</span>我就是我我就是我我就我就是我我就是我就是</p>
+                      </dl>
+                    </div></td>
+                </tr>
+              </table>
+              <!--page-->
+              <div class="yahoo mr30"><span class="disabled"> < </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a> 共20页 ,去第
+                <input name="" type="text" />
+                页<a href="#" class="go">GO</a> </div>
+              <!--page end--> 
+            </div>
+            <div id="con_one_4" style="display:none">
+              <table  border="0" class="table_ty_baogao mfsy">
+                <tr>
+                  <th width="198">用户名称</th>
+                  <th width="113">提交报告时间</th>
+                  <th width="160">报告主题</th>
+                  <th width="108">报告点赞人数</th>
+                  <th width="108">报告商家评分</th>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td class="text_left"><img src="images/linshi_9.jpg">
+                    <ul>
+                      <li><a href="#">我就是我我就是我我就</a></li>
+                      <li>普通会员</li>
+                      <li>LV15</li>
+                    </ul></td>
+                  <td>2014/3/27</br>
+                    16:03:09</td>
+                  <td><a>受到雷击发生大幅减少的方式</a></td>
+                  <td>12121212</td>
+                  <td>100</td>
+                </tr>
+              </table>
+              <!--page-->
+              <div class="yahoo mr30"><span class="disabled"> < </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a> 共20页 ,去第
+                <input name="" type="text" />
+                页<a href="#" class="go">GO</a> </div>
+              <!--page end--> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="spzx" class="baby_cs_wrap fixed">
+        <div class="classify_title fixed">
+          <h3 class="baby_zx_title">商品咨询</h3>
+          <p class="classify_title02">【<img src="images/classify01.jpg" width="25" height="25" />本栏目由香奈儿冠名】</p>
+        </div>
+        <div class="baby_cs_bottom fixed">
+          <div class="baby_cs_bt fixed">
+            <p class="bt_t">输入留言</p>
+            <textarea name="" cols="" rows="" class="bt_c"></textarea>
+            <input type="submit" name="button" id="button" class="bt_b" value="发送">
+          </div>
+          <div class="baby_cs_bb fixed">
+            <p class="bb_t">温馨提示：因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同，
+              为此以下回复仅对提问者3天内有效，其他网友仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+            <ul class="bb_b">
+              <li>
+                <p class="bjt"><img src="images/classify21.png" width="50" height="50"><a class="red" href="#">举报</a>杨志张红杨志张红 V1</p>
+                <p><em class="yellow">提问：</em>支持联通TD- LTE4G吗？</p>
+                <p><em class="luse">答复：</em>您好！X6支持TDD B38/39/40 FDD B3/7 频段，2G、3G网络：X6支持电信、联通、移动3G,2G全网通吃；TDD
+                  -LTE的4G网络：X6支持中国移动内地业务和香港移动4G业务；FDD-LTE的4G网络：X6支持的是FDD的B3/7这两个频段，
+                  联通FDD有Band3，但联通的FDD牌照未发放，目前不能确认是否能使用，建议咨询下联通。X6不支持电信的4G网络服
+                  务。感谢您对京东的支持！祝您购物愉快！2014/03/27 15:28:06</p>
+              </li>
+              <li>
+                <p class="bjt"><img src="images/classify21.png" width="50" height="50"><a class="red"  href="#">举报</a>杨志张红杨志张红 V1</p>
+                <p><em class="yellow">提问：</em>支持联通TD- LTE4G吗？</p>
+                <p><em class="luse">答复：</em>您好！X6支持TDD B38/39/40 FDD B3/7 频段，2G、3G网络：X6支持电信、联通、移动3G,2G全网通吃；TDD
+                  -LTE的4G网络：X6支持中国移动内地业务和香港移动4G业务；FDD-LTE的4G网络：X6支持的是FDD的B3/7这两个频段，
+                  联通FDD有Band3，但联通的FDD牌照未发放，目前不能确认是否能使用，建议咨询下联通。X6不支持电信的4G网络服
+                  务。感谢您对京东的支持！祝您购物愉快！2014/03/27 15:28:06</p>
+              </li>
+              <li>
+                <p class="bjt"><img src="images/classify21.png" width="50" height="50"><a class="red" href="#">举报</a>杨志张红杨志张红 V1</p>
+                <p><em class="yellow">提问：</em>支持联通TD- LTE4G吗？</p>
+                <p><em class="luse">答复：</em>您好！X6支持TDD B38/39/40 FDD B3/7 频段，2G、3G网络：X6支持电信、联通、移动3G,2G全网通吃；TDD
+                  -LTE的4G网络：X6支持中国移动内地业务和香港移动4G业务；FDD-LTE的4G网络：X6支持的是FDD的B3/7这两个频段，
+                  联通FDD有Band3，但联通的FDD牌照未发放，目前不能确认是否能使用，建议咨询下联通。X6不支持电信的4G网络服
+                  务。感谢您对京东的支持！祝您购物愉快！2014/03/27 15:28:06</p>
+              </li>
+              <div class="yahoo"><span class="disabled"> < </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a> 共20页 ,去第
+                <input name="" type="text" />
+                页<a href="#" class="go">GO</a></div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="baby_cs_wrap fixed">
+        <h2>哪里能买到</h2>
+        <div class="babycs_xia"> <a href="#"><img src="images/bd_bg_11.jpg" width="120" height="50"></a>
+          <p>香奈儿（CHANEL）品牌官方体验中心
+            <input type="submit" name="button2" id="button2" value="点击查看">
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="area_d">
+      <div class="white_box">
+        <h3 class="title_1">品牌<span class="text_green">官方体验中心</span></h3>
+        <img src="images/linshi_3.jpg" width="230" height="230" class="tyzx_img">
+        <p>CHANEL / 香奈儿</p>
+      </div>
+      <div class="white_box top15">
+        <h3 class="title_2">产品<span class="text_green">经理</span></h3>
+        <img src="images/classify07.png" width="135" height="135">
+        <p class="jinli">张欣 <span>女 射手座</span><br>
+          <span>粉丝数：</span><em class="yellow">123456</em></p>
+      </div>
+      <div class="n_js top15">
+        <h2>热门<em class="luse">免费试用</em></h2>
+        <div class="new_banner">
+          <ul class="rslides f426x240">
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="n_js top15">
+        <h2>热门<em class="luse">裸价体验</em></h2>
+        <div class="new_banner">
+          <ul class="rslides f426x240">
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+            <li><a href="javascript:"><img src="images/1.jpg" width="230" height="230" /></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="n_js top15">
+        <h2>免费试用</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+      <div class="n_js top15">
+        <h2>裸价体验</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+      <div class="n_js top15">
+        <h2>大牌活动</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+      <div class="n_js top15">
+        <h2>私人定制</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+      <div class="n_js top15">
+        <h2>消费真相</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+      <div class="n_js top15">
+        <h2>美试指数</h2>
+        <a href="#"><img src="images/classify04.jpg" width="230" height="450" /></a> </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--页面主end --> 
+
+<!--弹出框开始--> 
+<!--以下为弹出框效果代码-->
+<div id="abk"></div>
+<div id="tk_sy" class="yitiyan_wrap">
+  <h3>Sorry~ 您已体验过本商品<span id="close"></span></h3>
+  <p>美试网所有商品终身仅限体验一次</p>
+</div>
+<!--不符合要求-->
+<div id="bfh" class="bufuhe_wrap">
+  <h3>Sorry~ 您不能参加本次体验活动 <em id="oC"></em></h3>
+  <h4>原因如下</h4>
+  <div class="bufuhe_list bg_other"> <span>性别要求：</span>
+    <p>女</p>
+    <img src="images/icon_2.png"> </div>
+  <div class="bufuhe_list"> <span>年龄要求：</span>
+    <p>18-25岁</p>
+    <img src="images/icon_3.png"> </div>
+  <div class="bufuhe_list"> <span>会员类别：</span>
+    <p>VIP会员</p>
+    <img src="images/icon_3.png"> </div>
+  <div class="bufuhe_list"> <span>体验等级：</span>
+    <p>LV1-LV3</p>
+    <img src="images/icon_3.png"> </div>
+  <div class="bufuhe_list bg_other"> <span>本品牌勋章：</span>
+    <p>2个以上</p>
+    <img src="images/icon_2.png"> </div>
+  <div class="bufuhe_list bg_other"> <span>地区要求：</span>
+    <p>大陆地区</p>
+    <img src="images/icon_2.png"> </div>
+  <p class="bufuhe_text text_orange">*产品体验师和产品经理不受体验条件限制，<a href="#">查看如何申请认证</a></p>
+</div>
+<!--收藏-->
+<div id="sc" class="sc"> <span id="oC1" class="oC1"></span>
+  <h3><em></em>收藏成功</h3>
+  <p><a href="#">查看我的收藏</a></p>
+</div>
+<!--问号内容-->
+<p class="wh_cont">产品体验师和产品经理不受体验条件限制产品体验师和产品经理不受体验条件限制</p>
+<!--订阅-->
+<div id="dingyue" class="dingyue_wrap"> <img src="images/linshi_11.jpg"> <a class="but_jieshao" href="#"></a>
+  <h3>UGG春光明媚专场</h3>
+  <a href="#">登录手机短信提醒</a>| <a href="#">密保邮箱提醒</a> <a id="btn_dy" class="but_dingyue" href="javascript:;"></a> </div>
+<!--提示登录框-->
+<div id="login_ts" class="login_ts"> <span id="login_X"></span>
+  <div class="inp_box">
+    <ul>
+      <li class="bg_username">
+        <input type="text" name="username" value="手机号码">
+      </li>
+      <li class="bg_password">
+        <input type="text" name="password" value="密码">
+      </li>
+    </ul>
+  </div>
+  <div class="verify">
+    <input type="text">
+    <img src="" border="none"><span>换一张</span></div>
+  <div class="logBtn">
+    <input type="button" value="登录">
+  </div>
+  <div class="getWord">
+    <p><a>忘记登录手机号</a>|<a>忘记密码</a>|<a>免费注册</a></p>
+  </div>
+</div>
+<!--尺码颜色-->
+<div id="blk1" class="blk"> <a href="javascript:void(0)" id="close1" class="closeBtn"><img src="images/x.jpg" width="20" height="20"></a>
+  <div class="popup_color_size fixed">
+    <dl id="lt_color" class="itemAttr itemAttra fix">
+      <dt>颜色：</dt>
+      <dd><a class="wu" href="#none"><img src="images/linshi_8.jpg" title="123" width="33" height="33"><i class="icon"></i></a></dd>
+      <dd><a href="#none"><img src="images/linshi_9.jpg" title="123" width="33" height="33"><i class="icon"></i></a></dd>
+      <dd><a href="#none"><img src="images/linshi_10.jpg" title="123" width="33" height="33"><i class="icon"></i></a></dd>
+    </dl>
+    <dl id="lt_size" class="itemAttr fix">
+      <dt>尺码：</dt>
+      <dd><a href="javascript:;">36<i class="icon"></i></a></dd>
+      <dd><a class="wu" href="javascript:;">37</a></dd>
+      <dd><a href="javascript:;">38<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">39<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">40<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">41<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">42<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">43<i class="icon"></i></a></dd>
+      <dd><a href="javascript:;">44<i class="icon"></i></a></dd>
+    </dl>
+    <a id="lt_sure" class="but_gray">确定</a> </div>
+</div>
+<!--弹出框end--> 
+<script src="js/open_div.js" type="text/javascript" ></script> 
+<script>
+ $(function(){
+	oTk(id('tk_sy'),id('abk'), id('close'),$('.but_ty'))
+	oTk(id('bfh'),id('abk'), id('oC'),$('.but_ty'))
+	oTk(id('sc'),id('abk'), id('oC1'),$('.but_soucang'),"收藏成功|查看我的收藏")
+	oTk(id('sc'),id('abk'), id('oC1'),$('.but_car'),"加入体验车成功|去体验车结算")
+	oTk(id('login_ts'),id('abk'), id('login_X'),$('.but_ty'))
+	dwtc({ obj:$('.lj_sq em'), box:$('.wh_cont'), oClose:$('.lj_sq em'), onOF:true })
+	dwtc({ obj:$('._dy'), box:$('#dingyue'), oClose:$('#btn_dy'),onOF:false})
+})   
+</script>
+</body>
+</html>

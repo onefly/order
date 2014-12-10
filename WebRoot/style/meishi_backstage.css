@@ -1,0 +1,214 @@
+@charset "utf-8";
+/* CSS Document */
+/****************************** CSS 我的美试-我的订单-top ******************************/
+.indiv_cent{ border:1px solid #ccc; padding:8px;}
+.indiv_top_img{ float:left; width:150px;}
+.indiv_top_img img{ border:1px solid #eaeaea;}
+.indiv_top_right{ float:right; width:786px; margin-right:14px;}
+.indiv_tlt{ border-bottom:1px dashed #8ed800; font-size:15px; line-height:50px;}
+.indiv_tlt span{ float:left; margin-right:15px; color:#333;}
+.indiv_tlt span.width204{ width:204px;}
+.indiv_tlt span.width160{ width:160px;}
+.indiv_tlt span.width250{ width:240px;}
+.indiv_tlt span.mail{ background: url(../images/icon/system02.jpg) no-repeat 0 19px; padding-left:20px;}
+.indiv_top_img a.top_img01{ float:right; width:110px; height:26px; color:#ff8a00; margin-top:5px; background:url(../images/icon/geren_04.jpg) no-repeat; line-height:25px; padding:0 0 0 40px;  font-size:14px; text-align:left;}
+
+.indiv_top_right ul{ padding-top:12px; border-bottom:1px dashed #8ed800; padding-bottom:12px;}
+.indiv_top_right ul li{ float:left; width:786px; line-height:36px;}
+.indiv_top_right ul li p{ float:left; width:190px; font-size:15px; color:#333;}
+p.indiv_position{ float:right; padding-left:22px; background:url(../images/lucency_icon/gren_01.png) no-repeat -152px 15px;}
+.indiv_top_right ul li p em{ float:left; background:url(../images/lucency_icon/gren_01.png) no-repeat; margin:9px 5px 0 0;}
+.indiv_top_right ul li p span{ color:#6fa300;}
+.indiv_top_right ul li p em.tb01{ width:18px; height:20px; background-position:-0 0;}
+.indiv_top_right ul li p em.tb02{ width:17px; height:20px; background-position:-27px 0;}
+.indiv_top_right ul li p em.tb03{ width:22px; height:20px; background-position:-52px 0;}
+.indiv_top_right ul li p em.tb04{ width:18px; height:20px; background-position:-81px 0;}
+.indiv_top_right ul li p em.tb05{ width:22px; height:20px; background-position:-103px 0;}
+.indiv_top_right ul li p em.tb06{ width:18px; height:20px; background-position:-128px 0;}
+.indiv_top_right ul li p em.tb07{ width:20px; height:20px; background-position:-152px 0;}
+
+
+.indiv_tlb { line-height:25px; font-size:14px; padding:15px 0 6px 0;}
+.indiv_tlb a{ float:right; color:#fff; font-size:14px; margin-left:30px;}
+.indiv_tlb a.zan{ width:68px; height:25px; padding-left:24px; background:url(../images/button/yzm12.png) repeat-x;}
+.indiv_tlb a.din{ width:64px; height:25px; padding-left:28px; background:url(../images/button/yzm11.jpg) repeat-x;}
+.indiv_tlb a.yellow{ float:none; margin:0; color:#f60;}
+.indiv_br{ width:816px;}
+.indiv_br p{ margin:0 0 10px 2px;}
+
+
+
+
+
+.indiv_bl{ float:left; border:1px solid #ccc;}
+.indiv_bl li a{ display:block; width:100px; height:44px; line-height:44px; font-size:14px; background:url(../images/lucency_icon/gren_02.png) no-repeat 36px 15px; padding-left:64px;}
+.indiv_bl li a.geren_bj,.indiv_bl li a:hover{ background:url(../images/lucency_icon/gren_03.png) no-repeat 36px 15px #eee; color:#6FA300;}
+
+
+
+
+.data .Menubox{ height:43px;}
+.data .Menubox ul li{ float:left;}
+.data .Menubox ul li a{ float:left; cursor: pointer; font-size:15px; margin-right:14px; height:42px; padding:0 36px; line-height:42px; border:1px solid #dadada; border-bottom:none; background:#f7f7f7; border-radius: 8px 8px 0 0;}
+.data .Menubox ul li a.hover{height:43px; border:1px solid #93d700; border-bottom:none; background:#fff; color:#6fa300; position:relative; z-index:900;}
+.data .Contentbox{ border:1px solid #93d700; padding:0 10px;}
+.data .Contentbox .cont_data{ padding:44px 0 44px 122px;}
+.data .Contentbox .cont_data ul li{ clear:both; line-height:36px; font-size:14px;}
+.data .Contentbox .cont_data ul li.padding100{ padding:20px 0 5px 100px;}
+.data .Contentbox .cont_data ul li p.padding100{clear:both; margin-top:-20px; font-size:12px; color:#f60;}
+.data .Contentbox .cont_data ul li p.ys{clear:both; margin-top:-20px; font-size:12px; color:#ff6600;}
+.data .Contentbox .cont_data ul li span{ float:left; min-width:85px; text-align:right; margin-right:10px;}
+.data .Contentbox .cont_data ul li em{ font-size:12px; margin-left:10px; color:#f60;}
+.data .Contentbox .cont_data ul li select.loginFormTdIpt_c{ float:left; width:120px; height:28px; border:1px solid #adadad; margin:4px 10px 0 0;}
+
+.feeling_top{ float:left; width:724px; padding:35px;}
+.feeling_top label{ float:left; font-size:14px; line-height:30px;}
+.feeling_top input.input_w210{ float:left; width:200px; padding:0 5px; height:28px; border:1px solid #ccc;}
+.feeling_top input.icon_w80{ float:left; min-width:80px; height:30px; background:url(../images/lucency_icon/data02.png) repeat-x; font-size:14px; color:#fff; margin-left:10px;}
+
+
+.tab_noe{ clear:both; width:794px; border-collapse:collapse; border:1px solid #93d700;}
+.tab_noe thead tr{ background:#f7fceb;}
+.tab_noe thead tr th{ height:45px; border:1px solid #93d700; border-top:none; font-family:"微软雅黑"; font-size:12px;}
+
+.tab_noe tbody{ border-bottom:1px dashed #93d700;}
+.tab_noe tbody tr.lt_probm{ clear:both; background:#f9f9f9; height:28px;}
+.tab_noe tbody tr.lt_probm td{ padding:0 10px;}
+.tab_noe tbody tr.lt_probm td span{ margin-right:20px;}
+.tab_noe tbody tr.lt_probm td span em{ color:#6fa300;}
+
+.tab_noe tbody tr.border_bottom td{ border:1px dashed #ccc; border-bottom:none; border-top:none;}
+
+.tab_noe tbody tr td.border_img{ border-left:none; padding-top:12px;}
+.tab_noe tbody tr td.border_img img{ border:1px solid #ccc; margin-bottom:5px;}
+.tab_noe tbody tr td.border_img a.f_l{ margin-left:10px;}
+.tab_noe tbody tr td.border_img p.f_r{ display:block; width:110px; text-align:left; margin-left:15px; line-height:18px;}
+
+
+.tab_noe tbody tr td.border_img p.f_r a{ display:block; width:110px; color:#6fa300;}
+.tab_noe tbody tr td.border_img p.w210 a{ width:210px;}
+.tab_noe tbody tr td a p{ width:110px; color:#6fa300; line-height:18px;}
+.tab_noe tbody tr td div.line_height18{ line-height:18px;}
+.tab_noe tbody tr td div.line_height18 p{ margin:0;}
+.mybj01{ min-width:70px; padding:0 5px; height:25px; display:block; background:url(../images/lucency_icon/geren_03.jpg)  repeat-x; text-align:center; margin:5px 0; line-height:25px; color:#fff;}
+.mybj02{ min-width:70px; padding:0 5px; height:25px; display:block; background:url(../images/lucency_icon/data03.jpg)  repeat-x; text-align:center; margin:5px 0; line-height:25px; color:#fff;}
+.mybj03{ min-width:70px; padding:0 5px; height:25px; display:block; background:url(../images/lucency_icon/gray_01.jpg)  repeat-x; text-align:center; margin:5px 0; line-height:25px; color:#fff;}
+
+.tab_noe tbody tr td div.zhu{ text-align:cent; padding:0 3px;}
+.tab_noe tbody tr td div.zhu p em.zhu{ width:16px; height:16px; background:url(../images/icon/zhu.jpg) no-repeat left; position:relative; top:3px;}
+.tab_noe tbody tr td div.zhu p em.zhu1{ width:16px; height:15px; background:url(../images/icon/zhu1.jpg) no-repeat left; position:relative; top:3px;}
+.tab_noe tbody tr td div.zhu p em.zhu2{ width:16px; height:15px; background:url(../images/icon/zhu2.jpg) no-repeat left; position:relative; top:3px;}
+.tab_noe tbody tr td div.zhu p em{ display: inline-block; margin-right:2px;}
+
+
+.tab_noe tbody tr.teb td{ border:1px dashed #ccc;}
+.tab_noe tbody tr.teb td dl.w150 dt{ float:left; display:inline;}
+
+/****************************** CSS 我的美试-我的订单-弹出框 ******************************/
+.hinta{ width:458px; background:#88c700; padding:0 8px 8px 8px; display:none; position:absolute; z-index:999;}
+.hinta h2{ height:36px; line-height:36px; text-align:center; font-size:16px; color:#fff;}
+.hinta dl{ background:#fff; border:1px solid #8ed000; box-shadow:2px 2px 3px #656565; padding:0 10px;}
+.hinta dl dt{ font-size:12px; line-height:24px; border-bottom:1px solid #8ed000; color:#666; padding:20px 0 10px 30px;}
+.hinta dl dd{ text-align:center; margin:20px 0 20px 0;}
+.hinta dl dd input{ min-width:95px; height:30px; padding:0 20px; border:none; color:#fff;cursor: pointer; margin:0 15px;}
+.hinta dl dd input.l_bj{ background:url(../images/lucency_icon/yzm01.jpg) repeat-x;}
+.hinta dl dd input.h_bj{ background:url(../images/lucency_icon/data02.png) repeat-x;}
+
+
+
+
+/****************************** CSS 我的美试-我的退款-弹出框 ******************************/
+.popupa{ width:474px; background:#88c700; padding:0 8px 8px 8px; display:none; position:absolute; z-index:999;}
+.popupa h2{ height:36px; line-height:36px; text-align:center; font-size:16px; color:#fff;}
+.popupa dl{ background:#fcfcfc; border:1px solid #8ed000; box-shadow:2px 2px 3px #656565; padding:0 10px;}
+.popupa dl dt{ font-size:12px; border-bottom:1px solid #8ed000; padding:24px 0 15px 0;}
+.popupa dl dt form textarea{ width:340px; height:74px; border:1px solid #ccc; padding:5px; margin-left:32px;}
+.popupa dl dt form label{ margin-left:5px;}
+.popupa dl dd{ text-align:center; margin:20px 0 20px 0;}
+.popupa dl dd input{ min-width:95px; height:30px; padding:0 20px; border:none; color:#fff;cursor: pointer; margin:0 15px;}
+.popupa dl dd input.l_bj{ background:url(../images/lucency_icon/yzm01.jpg) repeat-x;}
+.popupa dl dd input.h_bj{ background:url(../images/lucency_icon/data02.png) repeat-x;}
+
+.popupb ul{ background:#fcfcfc; border:1px solid #8ed000; box-shadow:2px 2px 3px #656565;}
+.popupb ul li{ display:block;}
+.popupb ul li.ul_top{ padding:10px 20px; background:#fff;}
+.popupb ul li.ul_top span{ display:inline-block; line-height:30px;}
+.popupb ul li.ul_top span.w170{ width:170px;}
+.popupb ul li.ul_top span.w168{ width:168px;}
+.popupb ul li.ul_top span.l_height18{ line-height:18px; margin-top:10px;}
+.popupb ul li.ul_top span.l_height18 em.left{ float:left; width:60px;}
+.popupb ul li.ul_top span.l_height18 em.right{ float:left; width:360px;}
+
+.popupb ul li.ul_cent{ width:430px; margin:0 auto; padding-bottom:20px; border-bottom:1px solid #8ed000; text-align:center;}
+.popupb ul li.ul_cent form{ padding:20px 0 10px 0;}
+.popupb ul li.ul_cent form label{ font-size:14px;}
+.popupb ul li.ul_cent form p{ margin:10px 0;}
+.popupb ul li.ul_cent form select{ width:200px; height:30px; border:1px solid #ccc;}
+.popupb ul li.ul_cent form input{ width:198px; height:28px; border:1px solid #ccc;}
+.popupb ul li.ul_cent span{ line-height:20px; color:#f60;}
+
+
+.popupb ul li.ul_bottom{ text-align:center; margin:20px 0 20px 0;}
+.popupb ul li.ul_bottom input{ min-width:95px; height:30px; padding:0 20px; border:none; color:#fff;cursor: pointer; margin:0 15px;}
+.popupb ul li.ul_bottom input.l_bj{ background:url(../images/lucency_icon/yzm01.jpg) repeat-x;}
+.popupb ul li.ul_bottom input.h_bj{ background:url(../images/lucency_icon/data02.png) repeat-x;}
+
+
+/****************************** CSS 我的美试-边框通用 ******************************/
+.border_green{ border:1px solid #93d700;}
+
+
+/****************************** CSS 我的美试-我的报告 ******************************/
+.report_top{ border-bottom:1px dashed #cce57f; padding:0 35px;}
+.report_top span{ line-height:40px; font-size:16px; margin-right:75px;}
+
+
+
+
+/****************************** CSS 我的美试-我的评价 ******************************/
+.rating{ padding:5px 10px;}
+.rating ul li{ clear:both; line-height:18px; margin:5px 0;}
+.rating ul li span{ float:left; margin-bottom:5px;}
+.rating ul li span.pianh{ margin-left:30px;}
+.rating ul li span em{ float:right; width:18px; height:18px; position: relative; left:5px;}
+.rating ul li span em.icon01{ background:url(../images/lucency_icon/icon_face.png) no-repeat 0 0;}
+.rating ul li span em.icon02{ background:url(../images/lucency_icon/icon_face.png) no-repeat -18px 0;}
+.rating ul li span em.icon03{ background:url(../images/lucency_icon/icon_face.png) no-repeat -36px 0;}
+.rating ul li span em.icon04{ background:url(../images/lucency_icon/icon_face.png) no-repeat 0 -18px;}
+.rating ul li span em.icon05{ background:url(../images/lucency_icon/icon_face.png) no-repeat -18px -18px;}
+.rating ul li span em.icon06{ background:url(../images/lucency_icon/icon_face.png) no-repeat -36px -18px;}
+.rating ul li.center{ width:100%; text-align:center;}
+.rating ul li .gray2{ display:block; width:100%; text-align:left;}
+
+/****************************** CSS 我的美试-发货赔偿 ******************************/
+.compensate_r_top{ height:30px; line-height:30px; text-align:center; color:#6fa300; font-size:16px; background:#f7fceb; border-bottom:1px solid #93d700;}
+.compensate_r_bottom{ padding:0 10px;}
+.compensate_r_bottom dt{ line-height:64px; font-size:14px; color:#6fa300; border-bottom:1px dashed #cce57f;}
+.compensate_r_bottom dd{ padding:10px 15px 20px 15px;}
+.compensate_r_bottom dd span{ display:inline-block; width:375px; color:#666; line-height:32px;}
+.compensate_r_bottom dd span.yellow{ color:#f60; text-indent:85px;}
+
+
+p.hg36{ font-size:14px; line-height:36px; height:36px;}
+p.hg36 input.bj_lj{ float:right; width:151px; height:36px; font-size:18px; color:#fff; text-indent:15px; background:url(../images/button/button_peic_01.png) no-repeat;}
+.n_traceqt{ background:#f9f9f9; height:128px; padding-top:28px;}
+.n_traceqt span{ float:left; min-width:130px; text-align:center; font-size:12px; font-family:"宋体"; line-height:24px; margin:0 0 10px 0;}
+.n_traceqt span em{ font-size:14px; font-family:"微软雅黑";}
+.n_traceqt span.bold em{ font-weight:bold;}
+.bj_trace01{ width:829px; height:30px; background:url(../images/lucency_icon/yzm14_1.png) no-repeat 0 0; clear:both; margin:15px auto 0 auto;}
+.bj_trace02{ width:829px; height:30px; background:url(../images/lucency_icon/yzm14_1.png) no-repeat 0 -32px; clear:both; margin:15px auto 0 auto;}
+.bj_trace03{ width:829px; height:30px; background:url(../images/lucency_icon/yzm14_1.png) no-repeat 0 -64px; clear:both; margin:15px auto 0 auto;}
+.n_teceqb{ padding:10px 0 20px 0;}
+.n_teceqb tr.fize14 td{ font-size:14px; color:#333;}
+.n_teceqb tr.fize12 td{ font-size:12px; color:#666; font-family:"微软雅黑";}
+
+.order_information h2{ float:left; color:#fff; height:26px; padding:0 25px; line-height:26px; background: url(../images/lucency_icon/order_information_01.jpg) right no-repeat #8fc31f;}
+.order_information_list{ clear:both; width:230px; min-height:365px; border:1px solid #8fc31f; padding:15px 35px;}
+.order_information_list li{ line-height:46px; font-size:14px;}
+
+.order_shipments{ clear:both; width:606px; min-height:372px; border:1px solid #8fc31f; padding:25px 30px 0 30px;}
+.order_shipments ul li{ display:block; font-size:14px; line-height:42px; border-bottom:1px dashed #ccc;}
+
+.compensate_state{ width:468px; border:3px solid #8fc31f; background:#fff; padding:5px; margin-top:25px;}
+.compensate_state_fl{ width:125px; height:125px; background:#e9f3d2; font-size:18px; box-shadow:2px 2px 3px #E2E2E2;}
+.compensate_state tr td div input.state{ min-width:160px; height:38px; background:#8fc31f; color:#fff; font-size:18px;}

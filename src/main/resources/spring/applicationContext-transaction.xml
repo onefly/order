@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		abstract="false">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<!-- <tx:method name="*" read-only="true" /> -->
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- <aop:config> -->
+	<!-- <aop:pointcut id="allManagerMethod" expression="execution(* com.qianqian.demo.service.*.*(..))" 
+		/> -->
+	<!-- <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" 
+		/> -->
+	<!-- </aop:config> -->
+
+	<bean id="dbSourceAspectBean" class="com.framelib.aop.DBSourceAspect" />
+
+	<!-- 用户提交申请单事务配置 -->
+	<aop:config>
+		<!-- 配置有那些类中的方法拥有事务的传播性 -->
+		<aop:pointcut id="txPointcut1"
+			expression="execution(* com.qianqian.apply.service.IApplyFormService.addApplyForm(..))" />
+		<!-- 事务AOP -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut1" order="100"/>
+		<!-- 开启事务之前切换数据源到主库上 -->
+			<aop:aspect id="dbSourceAspect" ref="dbSourceAspectBean" order="99">
+			<aop:before method="doBefore" pointcut-ref="txPointcut1"/>
+			<aop:after method="doAfter" pointcut-ref="txPointcut1"/>
+			<aop:after-throwing pointcut-ref="txPointcut1"
+				method="doThrowing" throwing="ex" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 用户免费试用申请单拉赞支持事务配置 -->
+	<aop:config>
+		<!-- 配置有那些类中的方法拥有事务的传播性 -->
+		<aop:pointcut id="txPointcut2"
+			expression="execution(* com.qianqian.apply.service.IApplySupportRecordService.addRecord(..))" />
+		<!-- 事务AOP -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut2" order="100"/>
+		<!-- 开启事务之前切换数据源到主库上 -->
+			<aop:aspect id="dbSourceAspect" ref="dbSourceAspectBean" order="99">
+			<aop:before method="doBefore" pointcut-ref="txPointcut2"/>
+			<aop:after method="doAfter" pointcut-ref="txPointcut2"/>
+			<aop:after-throwing pointcut-ref="txPointcut2"
+				method="doThrowing" throwing="ex" />
+		</aop:aspect>
+	</aop:config>
+	<!-- 提交订单 -->
+	<aop:config>
+		<!-- 配置有那些类中的方法拥有事务的传播性 -->
+		<aop:pointcut id="txPointcut3"
+			expression="execution(* com.qianqian.order.service.IOrderService.addOrder(..))" />
+		<!-- 事务AOP -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut3" order="100"/>
+		<!-- 开启事务之前切换数据源到主库上 -->
+			<aop:aspect id="dbSourceAspect" ref="dbSourceAspectBean" order="99">
+			<aop:before method="doBefore" pointcut-ref="txPointcut3"/>
+			<aop:after method="doAfter" pointcut-ref="txPointcut3"/>
+			<aop:after-throwing pointcut-ref="txPointcut3"
+				method="doThrowing" throwing="ex" />
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
